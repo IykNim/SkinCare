@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="header second-name">
+        <nav class="bar">
+            <a href="#" class="logo">
+                <h2 class="logoT">✨Skin Care</h2>
+            </a>
+            <ul class="menu"> 
+                <li>
+                    <a href="#" class="link">Clinic</a>
+                </li>
+                <li>
+                    <a href="#" class="link">Booking List</a>
+                </li>
+                <li class="dropdown">
+                    <a href="#" class="link">Test</a>
+                    <ul class="dropdown-menu">
+                        <li><a href="#" class="dropdown-link">Color Analysis</a></li>
+                        <li><a href="#" class="dropdown-link">Body Shape Test</a></li>
+                        <li><a href="#" class="dropdown-link">Hair Test</a></li>
+                        <li><a href="#" class="dropdown-link">Face/Skin Test</a></li>
+                    </ul>
+                </li>
+                <li class="item">
+                    <a href="#" class="link">About</a>
+                </li>
+            </ul>
+                <div class="profile-container">
+                <a href="#" class="profile-icon">👤</a>
+                <ul class="profile-dropdown">
+                    <li><a href="#">My Profile</a></li>
+                    <li><a href="Login.html">Log In</a></li>
+                </ul>
+                </div>
+        </nav>
+    </div>
+    <div class="chatbox-icon">
+    💬
+    </div>    
+
+
+<script>
+  const profileIcon = document.querySelector('.profile-icon');
+  const profileDropdown = document.querySelector('.profile-dropdown');
+
+  profileIcon.addEventListener('click', function(e) {
+    e.preventDefault(); // Prevent link jump
+    profileDropdown.style.display = profileDropdown.style.display === 'block' ? 'none' : 'block';
+  });
+
+  // Optional: close dropdown if clicking outside
+  window.addEventListener('click', function(e) {
+    if (!profileIcon.contains(e.target) && !profileDropdown.contains(e.target)) {
+      profileDropdown.style.display = 'none';
+    }
+  });
+</script>
+
+</body>
+</html>
