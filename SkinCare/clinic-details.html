@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Clinic Details</title>
+  <link rel="stylesheet" href="clinic-details.css">
+</head>
+<body>
+
+  <div class="clinic-detail-container" id="clinic-detail-container"><!-- extend lok htr dk data ka d ko win --></div>
+  <script>
+    const clinics = {
+      "dr-shinbhone": {
+        name: "Dr. Shin Bhone Wai",
+        location: "Yangon",
+        specialty: "Aesthetic Doctor / Anti-Aging Doctor in Yangon",
+        photo: "Pics/photo_2025-07-02_23-55-49.jpg",
+        founder: true,
+        about: "An experienced doctor specializing in laser therapy, skin rejuvenation, and anti-aging treatments.",
+        credentials: [
+          "M.B., B.Sc (Ygn)",
+          "Diploma - Aesthetic Medicine (USA)",
+          "M.Sc - Anti-aging and Regenerative Medicine",
+          "International Certificates in Skin Science"
+        ]
+      },
+      "dr-minkyi": {
+        name: "Dr. Min Kyi Sin Thant",
+        location: "Mandalay",
+        specialty: "Skin Care and Acne Specialist",
+        photo: "Pics/photo_2025-07-02_23-55-49.jpg",
+        founder: false,
+        about: "Focused on acne treatment, scar healing, and basic skin health procedures.",
+        credentials: [
+          "B.Med, Dermatology (Japan)",
+          "M.D. - General Practice",
+          "Certificate in Clinical Cosmetology"
+        ]
+      },
+      "dr-ec": {
+        name: "Dr. Min Thant Tun",
+        location: "Mandalay",
+        specialty: "Skin Care and Acne Specialist",
+        photo: "Pics/photo_2025-07-02_23-55-49.jpg",
+        founder: false,
+        about: "Focused on acne treatment, scar healing, and basic skin health procedures.",
+        credentials: [
+          "B.Med, Dermatology (Japan)",
+          "M.D. - General Practice",
+          "Certificate in Clinical Cosmetology"
+        ]
+      },
+      "dr-kutineshaw": {
+        name: "Dr. Thet Htar San",
+        location: "Yangon",
+        specialty: "Aesthetic Doctor / Anti-Aging Doctor in Yangon",
+        photo: "Pics/photo_2025-07-02_23-55-49.jpg",
+        founder: true,
+        about: "An experienced doctor specializing in laser therapy, skin rejuvenation, and anti-aging treatments.",
+        credentials: [
+          "M.B., B.Sc (Ygn)",
+          "Diploma - Aesthetic Medicine (USA)",
+          "M.Sc - Anti-aging and Regenerative Medicine",
+          "International Certificates in Skin Science"
+        ]
+      },
+      "dr-yannku": {
+        name: "Dr. Nway Yadanar Aung",
+        location: "Yangon",
+        specialty: "Aesthetic Doctor / Anti-Aging Doctor in Yangon",
+        photo: "Pics/photo_2025-07-02_23-55-49.jpg",
+        founder: true,
+        about: "An experienced doctor specializing in laser therapy, skin rejuvenation, and anti-aging treatments.",
+        credentials: [
+          "M.B., B.Sc (Ygn)",
+          "Diploma - Aesthetic Medicine (USA)",
+          "M.Sc - Anti-aging and Regenerative Medicine",
+          "International Certificates in Skin Science"
+        ]
+      },
+      "dr-syantk": {
+        name: "Dr. Htet Eaindray",
+        location: "Yangon",
+        specialty: "Aesthetic Doctor / Anti-Aging Doctor in Yangon",
+        photo: "Pics/photo_2025-07-02_23-55-49.jpg",
+        founder: true,
+        about: "An experienced doctor specializing in laser therapy, skin rejuvenation, and anti-aging treatments.",
+        credentials: [
+          "M.B., B.Sc (Ygn)",
+          "Diploma - Aesthetic Medicine (USA)",
+          "M.Sc - Anti-aging and Regenerative Medicine",
+          "International Certificates in Skin Science"
+        ]
+      }
+      // docotrs a thit ty d mhr htae
+    };
+
+    // Get the slug from URL
+    const params = new URLSearchParams(window.location.search);
+    const clinicSlug = params.get("clinic");
+    const data = clinics[clinicSlug];
+
+    const container = document.getElementById("clinic-detail-container");
+
+    if (data) {
+      container.innerHTML = `
+        <div class="clinic-header">
+          <h1>${data.name}</h1>
+          <p><strong>${data.specialty}</strong></p>
+        </div>
+        <div class="clinic-body">
+          <img src="${data.photo}" alt="${data.name}" class="clinic-photo">
+          <div class="clinic-info">
+            <p><strong>Location:</strong> ${data.location}</p>
+            <p><strong>Founder:</strong> ${data.founder ? "Yes" : "No"}</p>
+            <p><strong>About:</strong> ${data.about}</p>
+            <div class="credentials">
+              <strong>Professional Credentials:</strong>
+              <ul>
+                ${data.credentials.map(item => `<li>${item}</li>`).join('')}
+              </ul>
+            </div>
+          </div>
+        </div>
+      `;
+    } else {
+      container.innerHTML = `<div class="not-found">Clinic not found.</div>`;
+    }
+  </script>
+
+</body>
+</html>

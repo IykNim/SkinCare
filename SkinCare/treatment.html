@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Treatment Options</title>
+  <link rel="stylesheet" href="treatment.css">
+</head>
+<body>
+
+   <div class="header second-name">
+        <nav class="bar">
+            <a href="index.html" class="logo">
+                <h2 class="logoT">✨Skin Care</h2>
+            </a>
+            <ul class="menu"> 
+                <li class="item">
+                    <a href="index.html" class="link">Home</a>
+                </li>
+                <li>
+                    <a href="clinic.html" class="link">Clinic</a>
+                </li>
+                <li>
+                    <a href="#" class="link">Booking List</a>
+                </li>
+                <li class="dropdown">
+                    <a href="#" class="link">Test</a>
+                    <ul class="dropdown-menu">
+                        <li><a href="#" class="dropdown-link">Color Analysis</a></li>
+                        <li><a href="#" class="dropdown-link">Body Shape Test</a></li>
+                        <li><a href="#" class="dropdown-link">Hair Test</a></li>
+                        <li><a href="#" class="dropdown-link">Face/Skin Test</a></li>
+                    </ul>
+                </li>
+                <li class="item">
+                    <a href="treatment.html" class="link">Treatment</a>
+                </li>
+
+            </ul>
+                <div class="profile-container">
+                <a href="#" class="profile-icon">👤</a>
+                <ul class="profile-dropdown">
+                    <li><a href="#">My Profile</a></li>
+                    <li><a href="Login.html">Log In</a></li>
+                </ul>
+                </div>
+        </nav>
+    </div>
+    <div class="chatbox-icon">
+    💬
+    </div> 
+
+  <div class="treatment-grid">
+    <div class="treatment-card" onclick="goToTreatment('acne')">
+      <img src="Pics/hormonal-acne.jpg" alt="Acne Treatment">
+      <h3>Acne Treatment</h3>
+      <p>Clear up breakouts & prevent future ones.</p>
+    </div>
+
+    <div class="treatment-card" onclick="goToTreatment('hair-breakage')">
+      <img src="Pics/breakage.jpg" alt="Hair Breakage">
+      <h3>Hair Breakage</h3>
+      <p>Repair and strengthen damaged hair.</p>
+    </div>
+
+    <div class="treatment-card" onclick="goToTreatment('anti-aging')">
+      <img src="Pics/antiAging.jpg" alt="Anti Aging">
+      <h3>Anti-Aging</h3>
+      <p>Smooth wrinkles and rejuvenate skin.</p>
+    </div>
+
+    <div class="treatment-card" onclick="goToTreatment('dry-skin')">
+      <img src="Pics/skin.jpg" alt="Dry Skin">
+      <h3>Dry Skin</h3>
+      <p>Hydration solutions for flaky, itchy skin.</p>
+    </div>
+  </div>
+
+  <script>
+    function goToTreatment(slug) {
+      window.location.href = `treatment-details.html?treatment=${slug}`;
+    }
+  </script>
+
+</body>
+</html>

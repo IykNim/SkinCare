@@ -1,0 +1,76 @@
+body {
+      font-family: Arial, sans-serif;
+      padding: 20px;
+      background-color: var(--skin-color);
+      color: black;
+    }
+:root{
+    --white-color:  #fff; 
+    --dark-color: []#252525; 
+    --primary-color: []#3b141c; 
+    --secondary-color: #f3961c; 
+    --light-pink-color: #f5e8d5; 
+    --skin-color: #F1C27D;
+    
+    --font-size-s: 0.9rem; 
+    --font-size-n: 1rem; 
+    --font-size-m: 1.12rem;  
+    --font-size-l: 1.5rem; 
+    --font-size-xl: 2rem; 
+    --font-size-xxl: 2.3rem;  
+    
+    --font-weight-normal: 400; 
+    -font-weight-medium: 500;
+    -font-weight-bold: 700;
+    --font-weight-semibold: 600;
+
+    --border-radius-s: 8px;
+    --border-radius-m: 30px;
+    --border-radius-circle: 50%;
+
+    --site-max-wdith: 3000px;
+}
+
+    .clinic-detail-container {
+      background-color: var(--light-pink-color);
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      max-width: 900px;
+      margin: auto;
+    }
+
+    .clinic-header {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    .clinic-body {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 30px;
+    }
+
+    .clinic-photo {
+      width: 250px;
+      height: auto;
+      border-radius: 10px;
+    }
+
+    .clinic-info {
+      flex: 1;
+    }
+
+    .credentials {
+      margin-top: 20px;
+    }
+
+    .credentials ul {
+      padding-left: 20px;
+    }
+
+    .not-found {
+      text-align: center;
+      font-size: 1.5rem;
+      color: red;
+    }

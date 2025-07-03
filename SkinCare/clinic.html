@@ -9,10 +9,13 @@
 <body>
     <div class="header second-name">
         <nav class="bar">
-            <a href="#" class="logo">
+            <a href="index.html" class="logo">
                 <h2 class="logoT">✨Skin Care</h2>
             </a>
-            <ul class="menu"> 
+            <ul class="menu">
+            <li class="item">
+                    <a href="index.html" class="link">Home</a>
+            </li>
                 <li>
                     <a href="#" class="link">Clinic</a>
                 </li>
@@ -29,7 +32,7 @@
                     </ul>
                 </li>
                 <li class="item">
-                    <a href="#" class="link">About</a>
+                    <a href="treatment.html" class="link">Treatment</a>
                 </li>
             </ul>
                 <div class="profile-container">
@@ -45,19 +48,32 @@
     <input type="text" id="search-name" placeholder="Search by clinic name..." />
     <select id="search-location">
         <option value="">All Locations</option>
-        <option value="YGN">Yangon</option>
-        <option value="MDY">Mandalay</option>
+        <option value="Yangon">Yangon</option>
+        <option value="Mandalay">Mandalay</option>
+        <option value="Tokyo">Tokyo</option>
     </select>
     <button id="search-btn">Search</button>
     </div>
 
     <div class="chatbox-icon">💬</div>   
 
-<div id="clinic-list">
-  <div class="clinic-card">
+ <div id="clinic-list">
+
+  <div class="clinic-card" onclick="goToClinicDetails('dr-minkyi')">
     <img src="Pics/photo_2025-07-02_23-55-49.jpg" alt="Clinic Image" class="clinic-image" />
     <div class="clinic-info">
-      <h2 class="clinic-name">Dr. Yan ku </h2>
+      <h2 class="clinic-name">Dr. MinKyi </h2>
+      <p><strong>Location:</strong> Yangon</p>
+      <p><strong>Popular Treatment:</strong> Acne Removal</p>
+      <p><strong>Price Range:</strong> $$</p>
+      <div class="stars">★★★★☆</div>
+    </div>
+  </div>
+
+  <div class="clinic-card" onclick="goToClinicDetails('dr-shinbhone')">
+    <img src="Pics/photo_2025-07-02_23-55-49.jpg" alt="Clinic Image" class="clinic-image" />
+    <div class="clinic-info">
+      <h2 class="clinic-name">Dr. ShinBhone </h2>
       <p><strong>Location:</strong> Mandalay</p>
       <p><strong>Popular Treatment:</strong> Acne Removal</p>
       <p><strong>Price Range:</strong> $$</p>
@@ -65,7 +81,7 @@
     </div>
   </div>
 
-  <div class="clinic-card">
+  <div class="clinic-card" onclick="goToClinicDetails('dr-syantk')">
     <img src="Pics/photo_2025-07-02_23-55-49.jpg" alt="Clinic Image" class="clinic-image" />
     <div class="clinic-info">
       <h2 class="clinic-name">Dr. S yan tk </h2>
@@ -76,21 +92,10 @@
     </div>
   </div>
 
-  <div class="clinic-card">
+  <div class="clinic-card" onclick="goToClinicDetails('dr-yannku')">
     <img src="Pics/photo_2025-07-02_23-55-49.jpg" alt="Clinic Image" class="clinic-image" />
     <div class="clinic-info">
-      <h2 class="clinic-name">Dr. S yan tk </h2>
-      <p><strong>Location:</strong> Yangon</p>
-      <p><strong>Popular Treatment:</strong> Acne Removal</p>
-      <p><strong>Price Range:</strong> $$</p>
-      <div class="stars">★★★★☆</div>
-    </div>
-  </div>
-
-  <div class="clinic-card">
-    <img src="Pics/photo_2025-07-02_23-55-49.jpg" alt="Clinic Image" class="clinic-image" />
-    <div class="clinic-info">
-      <h2 class="clinic-name">Dr. S yan tk </h2>
+      <h2 class="clinic-name">Dr. Yann ku </h2>
       <p><strong>Location:</strong> Mandalay</p>
       <p><strong>Popular Treatment:</strong> Acne Removal</p>
       <p><strong>Price Range:</strong> $$</p>
@@ -98,11 +103,22 @@
     </div>
   </div>
 
-  <div class="clinic-card">
+  <div class="clinic-card" onclick="goToClinicDetails('dr-kutineshaw')">
     <img src="Pics/photo_2025-07-02_23-55-49.jpg" alt="Clinic Image" class="clinic-image" />
     <div class="clinic-info">
-      <h2 class="clinic-name">Dr. S yan tk </h2>
+      <h2 class="clinic-name">Dr. Ku tine shaw </h2>
       <p><strong>Location:</strong> Yangon</p>
+      <p><strong>Popular Treatment:</strong> Acne Removal</p>
+      <p><strong>Price Range:</strong> $$</p>
+      <div class="stars">★★★★☆</div>
+    </div>
+  </div>
+
+    <div class="clinic-card" onclick="goToClinicDetails('dr-ec')">
+    <img src="Pics/photo_2025-07-02_23-55-49.jpg" alt="Clinic Image" class="clinic-image" />
+    <div class="clinic-info">
+      <h2 class="clinic-name">Dr. EC </h2>
+      <p><strong>Location:</strong> Tokyo</p>
       <p><strong>Popular Treatment:</strong> Acne Removal</p>
       <p><strong>Price Range:</strong> $$</p>
       <div class="stars">★★★★☆</div>
@@ -118,23 +134,60 @@
 
 
 <script>
+  // Profile dropdown toggle
   const profileIcon = document.querySelector('.profile-icon');
   const profileDropdown = document.querySelector('.profile-dropdown');
 
-  profileIcon.addEventListener('click', function(e) {
-    e.preventDefault(); // Prevent link jump
+  profileIcon.addEventListener('click', function (e) {
+    e.preventDefault();
     profileDropdown.style.display = profileDropdown.style.display === 'block' ? 'none' : 'block';
   });
-  window.addEventListener('click', function(e) {
+
+  window.addEventListener('click', function (e) {
     if (!profileIcon.contains(e.target) && !profileDropdown.contains(e.target)) {
       profileDropdown.style.display = 'none';
     }
   });
+
+  // Search functionality
   document.getElementById("search-btn").addEventListener("click", () => {
-  const name = document.getElementById("search-name").value.toLowerCase();
-  const location = document.getElementById("search-location").value;  // for search button bh
+  const nameInput = document.getElementById("search-name").value.toLowerCase();
+  const locationInput = document.getElementById("search-location").value.toLowerCase();
+
+  const cards = document.querySelectorAll(".clinic-card");
+
+  cards.forEach(card => {
+    const name = card.querySelector(".clinic-name").textContent.toLowerCase();
+
+    // Correctly get the location <p>
+    let locationText = "";
+    const paragraphs = card.querySelectorAll("p");
+    paragraphs.forEach(p => {
+      if (p.textContent.toLowerCase().includes("location:")) {
+        locationText = p.textContent.toLowerCase();
+      }
+    });
+
+    const matchName = name.includes(nameInput);
+    const matchLocation = locationInput === "" || locationText.includes(locationInput);
+
+    if (matchName && matchLocation) {
+      card.style.display = "flex";
+    } else {
+      card.style.display = "none";
+    }
+  });
 });
+
+
+  function goToClinicDetails(slug) {
+    window.location.href = `clinic-details.html?clinic=${slug}`;
+  }
+
+
+
 </script>
+
 
 
 </body>
