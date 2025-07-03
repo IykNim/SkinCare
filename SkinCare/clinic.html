@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Skin Care</title>
+    <link rel="stylesheet" href="clinic.css">
+</head>
+<body>
+    <div class="header second-name">
+        <nav class="bar">
+            <a href="#" class="logo">
+                <h2 class="logoT">✨Skin Care</h2>
+            </a>
+            <ul class="menu"> 
+                <li>
+                    <a href="#" class="link">Clinic</a>
+                </li>
+                <li>
+                    <a href="#" class="link">Booking List</a>
+                </li>
+                <li class="dropdown">
+                    <a href="#" class="link">Test</a>
+                    <ul class="dropdown-menu">
+                        <li><a href="#" class="dropdown-link">Color Analysis</a></li>
+                        <li><a href="#" class="dropdown-link">Body Shape Test</a></li>
+                        <li><a href="#" class="dropdown-link">Hair Test</a></li>
+                        <li><a href="#" class="dropdown-link">Face/Skin Test</a></li>
+                    </ul>
+                </li>
+                <li class="item">
+                    <a href="#" class="link">About</a>
+                </li>
+            </ul>
+                <div class="profile-container">
+                <a href="#" class="profile-icon">👤</a>
+                <ul class="profile-dropdown">
+                    <li><a href="#">My Profile</a></li>
+                    <li><a href="Login.html">Log In</a></li>
+                </ul>
+                </div>
+        </nav>
+    </div>
+    <div class="search-container">
+    <input type="text" id="search-name" placeholder="Search by clinic name..." />
+    <select id="search-location">
+        <option value="">All Locations</option>
+        <option value="YGN">Yangon</option>
+        <option value="MDY">Mandalay</option>
+    </select>
+    <button id="search-btn">Search</button>
+    </div>
+
+    <div class="chatbox-icon">💬</div>   
+
+<div id="clinic-list">
+  <div class="clinic-card">
+    <img src="Pics/photo_2025-07-02_23-55-49.jpg" alt="Clinic Image" class="clinic-image" />
+    <div class="clinic-info">
+      <h2 class="clinic-name">Dr. Yan ku </h2>
+      <p><strong>Location:</strong> Mandalay</p>
+      <p><strong>Popular Treatment:</strong> Acne Removal</p>
+      <p><strong>Price Range:</strong> $$</p>
+      <div class="stars">★★★★☆</div>
+    </div>
+  </div>
+
+  <div class="clinic-card">
+    <img src="Pics/photo_2025-07-02_23-55-49.jpg" alt="Clinic Image" class="clinic-image" />
+    <div class="clinic-info">
+      <h2 class="clinic-name">Dr. S yan tk </h2>
+      <p><strong>Location:</strong> Yangon</p>
+      <p><strong>Popular Treatment:</strong> Acne Removal</p>
+      <p><strong>Price Range:</strong> $$</p>
+      <div class="stars">★★★★☆</div>
+    </div>
+  </div>
+
+  <div class="clinic-card">
+    <img src="Pics/photo_2025-07-02_23-55-49.jpg" alt="Clinic Image" class="clinic-image" />
+    <div class="clinic-info">
+      <h2 class="clinic-name">Dr. S yan tk </h2>
+      <p><strong>Location:</strong> Yangon</p>
+      <p><strong>Popular Treatment:</strong> Acne Removal</p>
+      <p><strong>Price Range:</strong> $$</p>
+      <div class="stars">★★★★☆</div>
+    </div>
+  </div>
+
+  <div class="clinic-card">
+    <img src="Pics/photo_2025-07-02_23-55-49.jpg" alt="Clinic Image" class="clinic-image" />
+    <div class="clinic-info">
+      <h2 class="clinic-name">Dr. S yan tk </h2>
+      <p><strong>Location:</strong> Mandalay</p>
+      <p><strong>Popular Treatment:</strong> Acne Removal</p>
+      <p><strong>Price Range:</strong> $$</p>
+      <div class="stars">★★★★☆</div>
+    </div>
+  </div>
+
+  <div class="clinic-card">
+    <img src="Pics/photo_2025-07-02_23-55-49.jpg" alt="Clinic Image" class="clinic-image" />
+    <div class="clinic-info">
+      <h2 class="clinic-name">Dr. S yan tk </h2>
+      <p><strong>Location:</strong> Yangon</p>
+      <p><strong>Popular Treatment:</strong> Acne Removal</p>
+      <p><strong>Price Range:</strong> $$</p>
+      <div class="stars">★★★★☆</div>
+    </div>
+  </div>
+</div>
+
+    
+
+
+
+
+
+
+<script>
+  const profileIcon = document.querySelector('.profile-icon');
+  const profileDropdown = document.querySelector('.profile-dropdown');
+
+  profileIcon.addEventListener('click', function(e) {
+    e.preventDefault(); // Prevent link jump
+    profileDropdown.style.display = profileDropdown.style.display === 'block' ? 'none' : 'block';
+  });
+  window.addEventListener('click', function(e) {
+    if (!profileIcon.contains(e.target) && !profileDropdown.contains(e.target)) {
+      profileDropdown.style.display = 'none';
+    }
+  });
+  document.getElementById("search-btn").addEventListener("click", () => {
+  const name = document.getElementById("search-name").value.toLowerCase();
+  const location = document.getElementById("search-location").value;  // for search button bh
+});
+</script>
+
+
+</body>
+</html>
