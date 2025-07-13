@@ -21,13 +21,13 @@
                     <a href="clinic.html" class="link">Clinic</a>
                 </li>
                 <li>
-                    <a href="#" class="link">Booking List</a>
+                    <a href="bookingList.html" class="link">Booking List</a>
                 </li>
                 <li class="dropdown">
                     <a href="#" class="link">Test</a>
                     <ul class="dropdown-menu">
                         <li><a href="#" class="dropdown-link">Color Analysis</a></li>
-                        <li><a href="#" class="dropdown-link">Body Shape Test</a></li>
+                        <li><a href="bodyShape.html" class="dropdown-link">Body Shape Test</a></li>
                         <li><a href="#" class="dropdown-link">Hair Test</a></li>
                         <li><a href="#" class="dropdown-link">Face/Skin Test</a></li>
                     </ul>
@@ -80,6 +80,21 @@
     function goToTreatment(slug) {
       window.location.href = `treatment-details.html?treatment=${slug}`;
     }
+
+  // Profile dropdown toggle
+  const profileIcon = document.querySelector('.profile-icon');
+  const profileDropdown = document.querySelector('.profile-dropdown');
+
+  profileIcon.addEventListener('click', function (e) {
+    e.preventDefault();
+    profileDropdown.style.display = profileDropdown.style.display === 'block' ? 'none' : 'block';
+  });
+
+  window.addEventListener('click', function (e) {
+    if (!profileIcon.contains(e.target) && !profileDropdown.contains(e.target)) {
+      profileDropdown.style.display = 'none';
+    }
+  });
   </script>
 
 </body>

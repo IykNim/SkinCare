@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+    <link rel="stylesheet" href="hairTest.css">
+</head>
+<body>
+    <div class="header second-name">
+        <nav class="bar">
+            <a href="#" class="logo">
+                <h2 class="logoT">✨Skin Care</h2>
+            </a>
+            <ul class="menu"> 
+                <li class="item">
+                    <a href="#" class="link">Home</a>
+                </li>
+                <li>
+                    <a href="clinic.html" class="link">Clinic</a>
+                </li>
+                <li>
+                    <a href="bookingList.html" class="link">Booking List</a>
+                </li>
+                <li class="dropdown">
+                    <a href="#" class="link">Test</a>
+                    <ul class="dropdown-menu">
+                        <li><a href="#" class="dropdown-link">Color Analysis</a></li>
+                        <li><a href="bodyShape.html" class="dropdown-link">Body Shape Test</a></li>
+                        <li><a href="#" class="dropdown-link">Hair Test</a></li>
+                        <li><a href="#" class="dropdown-link">Face/Skin Test</a></li>
+                    </ul>
+                </li>
+                <li class="item">
+                    <a href="treatment.html" class="link">Treatment</a>
+                </li>
+
+            </ul>
+                <div class="profile-container">
+                <a href="#" class="profile-icon">👤</a>
+                <ul class="profile-dropdown">
+                    <li><a href="#">My Profile</a></li>
+                    <li><a href="Login.html">Log In</a></li>
+                </ul>
+                </div>
+        </nav>
+    </div>
+    <div class="chatbox-icon">
+    💬
+    </div>    
+<section class="hair-type-guide">
+  <h2>How to Determine Your Hair Type & Texture</h2>
+  <p>Understanding your hair type can help you choose the right haircare products and styles. Hair type is generally based on the shape of the strand and your natural texture.</p>
+
+  <div class="hair-info">
+    <div class="hair-types">
+      <h3>Types</h3>
+      <ul>
+        <li>Straight</li>
+        <li>Wavy</li>
+        <li>Curly</li>
+        <li>Coiled</li>
+      </ul>
+    </div>
+
+    <div class="hair-texture">
+      <h3>Texture</h3>
+      <ul>
+        <li>Fine</li>
+        <li>Medium</li>
+        <li>Thick</li>
+      </ul>
+    </div>
+
+    <div class="hair-type-details">
+      <h3>Four Different Hair Types</h3>
+      <p><strong>Type 1 (Straight):</strong></p>
+      <ul>
+        <li>1a – Very straight and fine</li>
+        <li>1b – Straight with a little body</li>
+        <li>1c – Straight but coarse and thick</li>
+      </ul>
+    </div>
+
+    <div class="texture-difference">
+      <h3>Difference Between Textures</h3>
+      <p>Fine hair is thinner in diameter, feels silky and can be fragile. Medium hair has more volume, while thick hair has a larger diameter and can be heavier or frizzier.</p>
+    </div>
+  </div>
+</section>
+
+<section class="hair-quiz">
+      <div id="start-screen">
+        <h2>Take this quiz and determine your hair type!</h2>
+        <button id="start-btn" class="quiz-btn">Start the Quiz</button>
+  </div>
+  <div class="quiz-container" id="quiz-container" style="display: none;">
+    <div class="quiz-progress">
+      <div class="progress-bar" id="progress-bar" style="width: 0%"></div>
+    </div>
+
+    <div class="quiz-question" id="quiz-question">
+      <!-- This will be dynamically updated -->
+      Your hair is straight at the roots and has very pronounced S-shaped waves further down.
+    </div>
+
+    <div class="quiz-options">
+      <button class="quiz-btn" onclick="submitAnswer(true)">Agree</button>
+      <button class="quiz-btn" onclick="submitAnswer(false)">Disagree</button>
+    </div>
+
+    <div class="quiz-footer">
+      <span id="question-count">1 of 5</span>
+    </div>
+  </div>
+</section>
+
+
+
+<script>
+  const profileIcon = document.querySelector('.profile-icon');
+  const profileDropdown = document.querySelector('.profile-dropdown');
+
+  profileIcon.addEventListener('click', function(e) {
+    e.preventDefault(); // Prevent link jump
+    profileDropdown.style.display = profileDropdown.style.display === 'block' ? 'none' : 'block';
+  });
+
+  // Optional: close dropdown if clicking outside
+  window.addEventListener('click', function(e) {
+    if (!profileIcon.contains(e.target) && !profileDropdown.contains(e.target)) {
+      profileDropdown.style.display = 'none';
+    }
+  });
+
+
+  const questions = [
+    "Your hair is straight at the roots and has very pronounced S-shaped waves further down.",
+    "Starburst Streammmmmm",
+    "What's your ETA? What's your ETA?",
+    "BAnnnnnnnnnng",
+    "Explosionnnnnnnnnnnnnnnnnnnnnnnnnnn",
+    "Latom",
+    "I am the bone of my sword",
+    "Full Counterrrr",
+    "Za warudo",
+    "Muryou Kuusho",
+    "Arise",
+    "Excaliburrrrrrrrrrr",
+    "Shinra Tensei",
+    "Padoru",
+    "Aoi aoi ano sora"
+  ];
+
+  let currentQuestion = 0;
+
+  function startQuiz() {
+    document.getElementById("start-screen").style.display = "none";
+    document.getElementById("quiz-container").style.display = "block";
+    updateQuiz();
+  }
+
+  function updateQuiz() {
+    document.getElementById("quiz-question").textContent = questions[currentQuestion];
+    document.getElementById("question-count").textContent = `${currentQuestion + 1} of ${questions.length}`;
+    document.getElementById("progress-bar").style.width = `${((currentQuestion + 1) / questions.length) * 100}%`;
+  }
+
+  function submitAnswer(agreed) {
+    console.log("Answer for question", currentQuestion + 1, ":", agreed ? "Agree" : "Disagree");
+    currentQuestion++;
+    if (currentQuestion < questions.length) {
+      updateQuiz();
+    } else {
+      document.querySelector(".quiz-container").innerHTML = `<h3>Thank you!</h3><p>Your answers have been recorded.</p>`;
+    }
+  }
+
+  // Hook up the Start button
+  document.getElementById("start-btn").addEventListener("click", startQuiz);
+</script>
+
+
+</body>
+</html>

@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+    <link rel="stylesheet" href="bookingList.css">
+</head>
+<body>
+    <div class="header second-name">
+        <nav class="bar">
+            <a href="#" class="logo">
+                <h2 class="logoT">✨Skin Care</h2>
+            </a>
+            <ul class="menu"> 
+                <li class="item">
+                    <a href="#" class="link">Home</a>
+                </li>
+                <li>
+                    <a href="clinic.html" class="link">Clinic</a>
+                </li>
+                <li>
+                    <a href="bookingList.html" class="link">Booking List</a>
+                </li>
+                <li class="dropdown">
+                    <a href="#" class="link">Test</a>
+                    <ul class="dropdown-menu">
+                        <li><a href="#" class="dropdown-link">Color Analysis</a></li>
+                        <li><a href="bodyShape.html" class="dropdown-link">Body Shape Test</a></li>
+                        <li><a href="hairTest.html" class="dropdown-link">Hair Test</a></li>
+                        <li><a href="#" class="dropdown-link">Face/Skin Test</a></li>
+                    </ul>
+                </li>
+                <li class="item">
+                    <a href="treatment.html" class="link">Treatment</a>
+                </li>
+
+            </ul>
+                <div class="profile-container">
+                <a href="#" class="profile-icon">👤</a>
+                <ul class="profile-dropdown">
+                    <li><a href="#">My Profile</a></li>
+                    <li><a href="Login.html">Log In</a></li>
+                </ul>
+                </div>
+        </nav>
+    </div>
+    <div class="chatbox-icon">
+    💬
+    </div>  
+<section class="table">
+  <h1>Your Bookings</h1>
+  <table id="booking-table">
+    <thead>
+      <tr>
+        <th>No.</th>
+        <th>Date</th>
+        <th>Time</th>
+        <th>Clinic</th>
+        <th>Treatment Type</th>
+        <th>Edit</th>
+      </tr>
+    </thead>
+    <tbody>
+      <!-- rows will be inserted here -->
+    </tbody>
+  </table>
+</section>
+
+<script>
+  // Profile dropdown
+  const profileIcon = document.querySelector('.profile-icon');
+  const profileDropdown = document.querySelector('.profile-dropdown');
+  profileIcon?.addEventListener('click', function(e) {
+    e.preventDefault();
+    profileDropdown.style.display = profileDropdown.style.display === 'block' ? 'none' : 'block';
+  });
+  window.addEventListener('click', function(e) {
+    if (!profileIcon?.contains(e.target) && !profileDropdown?.contains(e.target)) {
+      profileDropdown.style.display = 'none';
+    }
+  });
+
+  // Booking Table Logic
+  const bookings = JSON.parse(localStorage.getItem("bookings")) || [];
+  const tbody = document.querySelector("#booking-table tbody");
+
+  if (bookings.length === 0) {
+    tbody.innerHTML = `<tr><td colspan="6">No bookings found.</td></tr>`;
+  } else {
+    bookings.forEach((booking, index) => {
+      const row = document.createElement("tr");
+      row.innerHTML = `
+        <td>${index + 1}</td>
+        <td>${booking.date}</td>
+        <td>${booking.time}</td>
+        <td>${booking.clinic}</td>
+        <td>${booking.treatment}</td>
+        <td><button class="edit-btn" onclick="deleteBooking(${index})">Delete</button></td>
+      `;
+      tbody.appendChild(row);
+    });
+  }
+
+  function deleteBooking(index) {
+    bookings.splice(index, 1);
+    localStorage.setItem("bookings", JSON.stringify(bookings));
+    location.reload();
+  }
+</script>
+
+</body>
+</html>

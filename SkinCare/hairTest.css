@@ -200,4 +200,118 @@ ul{
 .profile-dropdown a:hover {
   background-color: #f5f5f5;
 }
+.hair-type-guide {
+  padding: 40px;
+  background-color:  #f5e8d5;
+  color: #333;
+  font-family: sans-serif;
+}
+
+.hair-type-guide h2 {
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+.hair-type-guide p {
+  text-align: center;
+  margin-bottom: 30px;
+  font-size: 1rem;
+  line-height: 1.5;
+}
+
+.hair-info {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  gap: 20px;
+}
+
+.hair-types, .hair-texture, .hair-type-details, .texture-difference {
+  background-color: var(--skin-color);
+  border: 2px solid #f1c27d;
+  border-radius: 10px;
+  padding: 20px;
+  width: 280px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+}
+
+.hair-info h3 {
+  margin-bottom: 10px;
+  color: #3b141c;
+}
+
+.hair-info ul {
+  list-style: disc inside;
+  padding-left: 0;
+}
+
+.hair-info li {
+  margin-bottom: 6px;
+}
+
+.hair-quiz {
+  margin-top: 40px;
+  padding: 30px;
+  background-color: #fff;
+  border: 2px solid #f1c27d;
+  border-radius: 10px;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+.quiz-progress {
+  height: 8px;
+  background-color: #eee;
+  border-radius: 4px;
+  margin-bottom: 20px;
+  overflow: hidden;
+}
+
+.progress-bar {
+  height: 100%;
+  background-color: var(--skin-color);
+  transition: width 0.3s ease;
+}
+
+.quiz-question {
+  font-size: 1.2rem;
+  font-weight: 500;
+  margin-bottom: 30px;
+}
+
+.quiz-options {
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+}
+
+.quiz-btn {
+  background-color: var(--skin-color);
+  border: 1px solid var(--skin-color);
+  padding: 20px 40px;
+  font-size: 1rem;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.quiz-btn:hover {
+  background-color: brown;
+}
+
+.quiz-footer {
+  margin-top: 20px;
+  color: #555;
+}
+#start-screen {
+  text-align: center;
+  margin-bottom: 20px;
+}
+#start-screen h2{
+    margin-bottom: 15px;
+}
+
 

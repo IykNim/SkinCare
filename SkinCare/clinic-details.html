@@ -8,7 +8,14 @@
 </head>
 <body>
 
-  <div class="clinic-detail-container" id="clinic-detail-container"><!-- extend lok htr dk data ka d ko win --></div>
+  <div class="clinic-detail-container" id="clinic-detail-container">
+    <!-- dynamic content goes here -->
+  </div>
+
+  <div class="book">
+    <button>Book</button>
+  </div>
+
   <script>
     const clinics = {
       "dr-shinbhone": {
@@ -93,14 +100,11 @@
           "International Certificates in Skin Science"
         ]
       }
-      // docotrs a thit ty d mhr htae
     };
 
-    // Get the slug from URL
     const params = new URLSearchParams(window.location.search);
     const clinicSlug = params.get("clinic");
     const data = clinics[clinicSlug];
-
     const container = document.getElementById("clinic-detail-container");
 
     if (data) {
@@ -127,7 +131,27 @@
     } else {
       container.innerHTML = `<div class="not-found">Clinic not found.</div>`;
     }
+
+    const bookBtn = document.querySelector(".book button");
+
+    if (bookBtn && data) {
+      bookBtn.addEventListener("click", () => {
+        const newBooking = {
+          clinic: data.name,
+          date: new Date().toISOString().split("T")[0],
+          time: "14:00",
+          treatment: data.specialty
+        };
+
+        const bookings = JSON.parse(localStorage.getItem("bookings")) || [];
+        bookings.push(newBooking);
+        localStorage.setItem("bookings", JSON.stringify(bookings));
+
+        window.location.href = "bookingList.html";
+      });
+    }
   </script>
 
 </body>
 </html>
+
