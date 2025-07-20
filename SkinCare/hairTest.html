@@ -48,9 +48,98 @@
     <div class="chatbox-icon">
     💬
     </div>    
+
+    <section class="hair-quiz">
+      <div id="start-screen">
+        <h2>Take this quiz and determine your hair type!</h2>
+        <button id="start-btn" class="quiz-btn">Start the Quiz</button>
+  </div>
+  <div class="quiz-container" id="quiz-container" style="display: none;">
+    <div class="quiz-progress">
+      <div class="progress-bar" id="progress-bar" style="width: 0%"></div>
+    </div>
+
+    <div class="quiz-question" id="quiz-question">
+      <!-- This will be dynamically updated -->
+      Your hair is straight at the roots and has very pronounced S-shaped waves further down.
+    </div>
+
+    <div class="quiz-options">
+      <button class="quiz-btn" onclick="submitAnswer(true)">Agree</button>
+      <button class="quiz-btn" onclick="submitAnswer(false)">Disagree</button>
+    </div>
+
+    <div class="quiz-footer">
+      <span id="question-count">1 of 5</span>
+    </div>
+  </div>
+</section>
+
+<div>
+  <h2>An Overview of Hair Types</h2><br>
+  <p>There are 4 general hair types: straight (type 1), wavy (type 2), curly (type 3), and coily (type 4). Each is then further divided into subtypes (1A, 1B, and so on) based on the hair’s specific pattern, coarseness, and the tightness or looseness of any curls or coils.</p>
+  <br>
+  <i>Type 1 : Straight</i>
+  <p>Type 1 hair is predominantly straight (and tends to look very sleek and shiny as a result). Because type 1 hair lacks curls and waves, natural oils flow from the scalp to the ends—which ensures that each strand gets enough nutrients but may also cause the hair to get oily faster than other types. Type 1 hair also appears to grow the fastest, but in reality, that’s because there’s no shrinkage (as opposed to curly or coily hair, which appears to “shrink” when it’s really just curling up). Straight hair is more difficult to style because it doesn’t hold curls or textures well.</p>
+  <b>Type 1 hair consists of: </b>
+  <ul>
+    <li>1A: Fully straight hair that’s fine, wispy, and very sleek.</li>
+    <li>1B: Fully straight hair with some volume and thickness.</li>
+    <li>1C: Mostly straight hair with occasional bends or waves.</li>
+  </ul>
+  <b>To care for type 1 hair: </b>
+  <ul>
+    <li>Use a hairbrush with natural bristles so you can carry your scalp’s natural oils along each strand.</li>
+    <li>Use shampoo and hair masks to keep your hair from getting too oily.</li>
+    <li>Use texturizing spray or dry shampoo before styling your hair, and apply hairspray to lock in styles.</li>
+  </ul>
+  <br>
+  <i>Type 2 : Wavy</i>
+  <p>Type 2 hair is wavy—with more waves and bends than type 1 hair but not as much curl as types 3 or 4 (which makes it fall somewhere between straight and curly). Most type 2 hair has S-shaped patterns, with each wave and curl getting more prominent the further it gets from the root. It’s also prone to frizzing, especially when exposed to humidity, and may even look different based on the weather. Overall, type 2 hair is thicker than type 1, with more bounce and volume.</p>
+  <b>Type 2 hair consists of: </b>
+  <ul>
+    <li>2A: Tousled, loose waves that are less defined and easy to style.</li>
+    <li>2B: Pronounced S-shaped waves that curl more as they get further from the scalp.</li>
+    <li>2C: Voluminous, well-defined S-shaped waves that are especially prone to frizz.</li>
+  </ul>
+  <b>To care for type 2 hair: </b>
+  <ul>
+    <li>Squeeze-dry your hair with a soft t-shirt or hair towel (instead of rubbing it).</li>
+    <li>Use a moisturizing, anti-frizz shampoo or leave-in treatment.</li>
+    <li>Avoid touching your hair to prevent frizzing.</li>
+  </ul>
+  <br>
+  <i>Type 3 : Curly</i>
+  <p>Type 3 hair features curls with more volume and body than types 1 or 2. Strands are mostly curled, although some might be S-shaped. Type 3 hair has plenty of natural definition and some sheen; it usually lies flat when wet and curls up as it dries. It’s also more prone to dryness than previous types because your scalp’s natural oils can’t travel down individual strands easily, and it’s also more prone to heat and breakage—so all type 3 hair tends to need moisture in order to stay healthy.</p>
+  <b>Type 3 hair consists of: </b>
+  <ul>
+    <li>3A: Loose, bouncy curls roughly the size of sidewalk chalk.</li>
+    <li>3B: Tight, dense ringlets roughly as wide as a marker.</li>
+    <li>3C: Dense, voluminous corkscrew curls around the size of a pencil.</li>
+  </ul>
+  <b>To care for type 3 hair: </b>
+  <ul>
+    <li>Try not to heat-style your hair too often since it can damage your curls.</li>
+    <li>Consider using heatless styles, or protective styles like buns and twist-outs to protect your hair.</li>
+    <li>Use plenty of anti-frizz and moisturizing products in your daily haircare routine.</li>
+  </ul>
+  <br>
+  <i>Type 4 : Coily</i>
+  <p>Coily hair features the tightest curls of all hair types. It’s heavily textured (e.g., tight coils, zig-zag patterns, etc.) and super dense, with lots of versatility in terms of styling! However, it needs lots of moisture to maintain, and it tangles easily because each strand of hair has so much texture. It also damages easily because, like type 3, it’s harder for natural oils to travel from the scalp to the ends of each strand—which is why type 4 hair needs to be nourished and cared for without being washed too frequently!</p>
+  <b>Type 4 hair consists of: </b>
+  <ul>
+    <li>4A: Defined S-shaped coils roughly the size of a chopstick.</li>
+    <li>4B: Tight, Z-shaped coils with less definition than 4A hair.</li>
+    <li>4C: Sharp, extremely small Z-shaped strands with the least definition.</li>
+  </ul>
+  <b>To care for type 4 hair: </b>
+  <ul>
+    <li>Moisturize your hair often to keep it from getting dry.</li>
+    <li>Consider using twists or braids to keep your hair out of your face.</li>
+    <li>Try a protective style like crochet braids or box braids, especially for 4B or 4C.</li>
+  </ul>
+</div>
 <section class="hair-type-guide">
-  <h2>How to Determine Your Hair Type & Texture</h2>
-  <p>Understanding your hair type can help you choose the right haircare products and styles. Hair type is generally based on the shape of the strand and your natural texture.</p>
 
   <div class="hair-info">
     <div class="hair-types">
@@ -89,34 +178,6 @@
   </div>
 </section>
 
-<section class="hair-quiz">
-      <div id="start-screen">
-        <h2>Take this quiz and determine your hair type!</h2>
-        <button id="start-btn" class="quiz-btn">Start the Quiz</button>
-  </div>
-  <div class="quiz-container" id="quiz-container" style="display: none;">
-    <div class="quiz-progress">
-      <div class="progress-bar" id="progress-bar" style="width: 0%"></div>
-    </div>
-
-    <div class="quiz-question" id="quiz-question">
-      <!-- This will be dynamically updated -->
-      Your hair is straight at the roots and has very pronounced S-shaped waves further down.
-    </div>
-
-    <div class="quiz-options">
-      <button class="quiz-btn" onclick="submitAnswer(true)">Agree</button>
-      <button class="quiz-btn" onclick="submitAnswer(false)">Disagree</button>
-    </div>
-
-    <div class="quiz-footer">
-      <span id="question-count">1 of 5</span>
-    </div>
-  </div>
-</section>
-
-
-
 <script>
   const profileIcon = document.querySelector('.profile-icon');
   const profileDropdown = document.querySelector('.profile-dropdown');
@@ -135,21 +196,21 @@
 
 
   const questions = [
+    "Your hair is thin, straight, wispy, and doesn’t hold curls at all.",
+    "Your hair is straight but has volume, and you can sometimes curl it.",
+    "Your hair is mainly straight, with a few waves here and there.",
+    "Your hair is wavy and beachy with loose, S-shaped curls.",
     "Your hair is straight at the roots and has very pronounced S-shaped waves further down.",
-    "Starburst Streammmmmm",
-    "What's your ETA? What's your ETA?",
-    "BAnnnnnnnnnng",
-    "Explosionnnnnnnnnnnnnnnnnnnnnnnnnnn",
-    "Latom",
-    "I am the bone of my sword",
-    "Full Counterrrr",
-    "Za warudo",
-    "Muryou Kuusho",
-    "Arise",
-    "Excaliburrrrrrrrrrr",
-    "Shinra Tensei",
-    "Padoru",
-    "Aoi aoi ano sora"
+    "Your hair is prone to frizz and extremely wavy—even a bit curly at times.",
+    "Your hair has big, bouncy curls roughly the size of sidewalk chalk.",
+    "Your hair has tight ringlets the size of a marker—and lots of volume.",
+    "Your hair has springy, corkscrew curls the size of a pencil.",
+    "Your hair has well-defined S-shaped coils the size of a chopstick.",
+    "Your hair has tight, Z-shaped strands and coils that form a zig-zag pattern.",
+    "Your hair has very sharp Z-shaped coils so tiny they don’t look like curls from a distance.",
+    "You have fine, delicate hair (as opposed to medium or coarse hair).",
+    "You have medium hair that isn’t super coarse or fine.",
+    "You have thick, coarse hair (as opposed to medium or fine)."
   ];
 
   let currentQuestion = 0;

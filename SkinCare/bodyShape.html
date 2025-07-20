@@ -14,7 +14,7 @@
             </a>
             <ul class="menu"> 
                 <li class="item">
-                    <a href="#" class="link">Home</a>
+                    <a href="index.html" class="link">Home</a>
                 </li>
                 <li>
                     <a href="clinic.html" class="link">Clinic</a>
@@ -48,62 +48,82 @@
     <div class="chatbox-icon">
     💬
     </div>
-    
+    <h2>Body Type Calculator</h2><br>
+    <p style="margin-left: 20px; margin-right: 20px;">The Body Type Calculator is designed for females to find their "body shape," which can be used for getting targeted outfit Ideas. Even though there is some research linking certain body shapes with some health risks, the body shape result of this calculator is not intended to be a serious indication of health or an ideal that must be met. Instead, the waist-hip ratio, which is also shown in the results of this calculator, is a better indicator of health.</p>
+    <div class="cal">
+      <form class="calc">
+        <input type="number" placeholder="Bust Size(cm)" required />
+        <input type="number" placeholder="Waist Size(cm)" required />
+        <input type="number" placeholder="High Hip Size(cm)" required />
+        <input type="number" placeholder="Hip Size(cm)" required />
+        <button type="submit">Calculate</button>
+        <div id="result-message" style="margin-top: 15px; font-weight: bold; color: brown;"></div>
+      </form>
+      <div class="ptag">
+        <p class="howto">
+        <span style="font-weight: bold;">When measuring, be sure to stand straight with arms to the side. Make sure the tape is snug against the body, but not too tight such that it compresses the body.</span><br>
+        Bust Size - the circumference measured around the chest over the fullest part of the breasts, while wearing a properly fitted bra. <br>
+        Waist Size - the smallest circumference measured around the natural waist, just above the belly button. <br>
+        High Hip Size - the circumference of the upper swell of the hip over the pelvic region. It is around 7 inches (18 cm) below the natural waist. <br>
+        Hip Size - the largest circumference measured around the hips over the largest part of the buttocks.
+      </p>
+      </div>
+      </div>
+
+      
 <div class="out">
 <form class="bsf">
-    <h2>Determine Your Body Shape</h2>
+    <h2>Determine Your Body Shape</h2><br>
+    <p style="text-align: center;">In the fashion industry, body shapes are often categorized into four classes.</p>
   <div class="body-shape-container">
     <label class="shape-option">
       <img class="img" src="Pics/hourglass.jpg" alt="Hourglass">
-      <input type="radio" name="body-shape" value="Hourglass">
-      <div>Hourglass</div>
+      <h3>Hourglass</h3><br>
+      <p>This body shape describes a person with hip and bust measurements nearly equal in size, with a narrower waist measurement.</p>
     </label>
 
     <label class="shape-option">
       <img class="img" src="Pics/rectangle.jpg" alt="Rectangle">
-      <input type="radio" name="body-shape" value="Rectangle">
-      <div>Rectangle</div>
+      <h3>Rectangle</h3><br>
+      <p>This body shape describes a person who typically has waist measurements that are less than 9 inches smaller than the hip or bust measurements.</p>
     </label>
 
     <label class="shape-option">
       <img class="img" src="Pics/invertedTri.jpg" alt="Inverted Triangle">
-      <input type="radio" name="body-shape" value="InvertedTriangle">
-      <div>Inverted Triangle</div>
+      <h3>Inverted Triangle</h3><br>
+      <p>This body shape describes a person who has broader shoulders and bust than they do hips.</p>
     </label>
 
     <label class="shape-option">
       <img class="img" src="Pics/pear.jpg" alt="Pear">
-      <input type="radio" name="body-shape" value="Pear">
-      <div>Pear</div>
+      <h3>Pear</h3><br>
+      <p>This body shape describes a person who has hip measurements greater than their bust measurements.</p>
     </label>
 
-    <label class="shape-option">
-      <img class="img" src="Pics/apple.jpg" alt="Apple">
-      <input type="radio" name="body-shape" value="Apple">
-      <div>Apple</div>
-    </label>
   </div>
 </form>
+<br><br>
+<div class="info">
+  <h2>What is my body shape?</h2><br>
+  <p>The female body shapes are based on societal standards that are subjective and are different in different cultures. The algorithm used in this calculator is based on a study published in the International Journal of Clothing Science and Technology, which breaks down the body shapes of women into 7 categories1. There are very wide ranges of actual sizes within each shape. Also, some body shapes may not fit into any of the shapes listed below.</p>
+  <br>
+  <h4>Hourglass</h4>
+  <p>If (bust - hips) ≤ 1" AND (hips - bust) < 3.6" AND (bust - waist) ≥ 9" OR (hips - waist) ≥ 10"</p>
+  <h4>Bottom hourglass</h4>
+  <p>If (hips - bust) ≥ 3.6" AND (hips - bust) < 10" AND (hips - waist) ≥ 9" AND (high hip/waist) < 1.193</p>
+  <h4>Top hourglass</h4>
+  <p>If (bust - hips) > 1" AND (bust - hips) < 10" AND (bust - waist) ≥ 9"</p>
+  <h4>Spoon</h4>
+  <p>If (hips - bust) > 2" AND (hips - waist) ≥ 7" AND (high hip/waist) ≥ 1.193</p>
+  <h4>Triangle</h4>
+  <p>If (hips - bust) ≥ 3.6" AND (hips - waist) < 9"</p>
+  <h4>Inverted triangle</h4>
+  <p>If (bust - hips) ≥ 3.6" AND (bust - waist) < 9"</p>
+  <h4>Rectangle</h4>
+  <p>If (hips - bust) < 3.6" AND (bust - hips) < 3.6" AND (bust - waist) < 9" AND (hips - waist) < 10"</p>
+</div>
 
 
-<div class="cal">
-<form class="calc">
-  <h3>Body Type Calculator</h3>
-  <input type="number" placeholder="Bust Size(cm)" required />
-  <input type="number" placeholder="Waist Width(cm)" required />
-  <input type="number" placeholder="High Hip(cm)" required />
-  <input type="number" placeholder="Hip(cm)" required />
-  <button type="submit">Calculate</button>
-  <div id="result-message" style="margin-top: 15px; font-weight: bold; color: brown;"></div>
-</form>
-<div class="ptag">
-  <p class="howto">
-  <span style="font-weight: bold;">How to Determin your Body Shape</span>
-  Always be aware of your 4 size: SHOULDERS, BUST, WAIST, HIP :3
-  But You don't know your body Shape? We have a calculator to help you out. Input your sizes;
-</p>
-</div>
-</div>
 
 <script>
   // Profile dropdown toggle

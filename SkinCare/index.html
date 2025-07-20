@@ -47,7 +47,24 @@
     </div>
     <div class="chatbox-icon">
     💬
-    </div>    
+    </div>
+<div id="chatbox" class="chatbox hidden">
+  <div class="chat-header">
+    <span>SkinCare Help</span>
+    <button id="close-chat"> × </button>
+  </div>
+  <div class="chat-body">
+    <div class="question-list">
+      <button class="question">What's the best skincare routine for oily skin?</button>
+      <button class="question">Do your products contain parabens?</button>
+      <button class="question">Are your products cruelty-free?</button>
+      <button class="question">How long does shipping take?</button>
+      <button class="question">Can I return a product?</button>
+    </div>
+    <div id="chat-response" class="chat-response"></div>
+  </div>
+</div>
+    
 
 
 <script>
@@ -64,6 +81,57 @@
     if (!profileIcon.contains(e.target) && !profileDropdown.contains(e.target)) {
       profileDropdown.style.display = 'none';
     }
+  });
+
+document.getElementById("chat-icon").addEventListener("click", () => {
+  document.getElementById("chatbox").classList.remove("hidden");
+});
+</script>
+<script>
+  // 🔒 Profile dropdown toggle
+  const profileIconEl = document.querySelector('.profile-icon');
+  const profileDropdownEl = document.querySelector('.profile-dropdown');
+
+  profileIconEl.addEventListener('click', function(e) {
+    e.preventDefault(); // Prevent link jump
+    profileDropdownEl.style.display = profileDropdownEl.style.display === 'block' ? 'none' : 'block';
+  });
+
+  // Close dropdown if clicking outside
+  window.addEventListener('click', function(e) {
+    if (!profileIconEl.contains(e.target) && !profileDropdownEl.contains(e.target)) {
+      profileDropdownEl.style.display = 'none';
+    }
+  });
+
+  // 💬 Chat module logic
+  const chatIconEl = document.querySelector(".chatbox-icon");
+  const chatBoxEl = document.getElementById("chatbox");
+  const closeChatEl = document.getElementById("close-chat");
+  const chatResponseEl = document.getElementById("chat-response");
+
+  chatIconEl.addEventListener("click", () => {
+    chatBoxEl.classList.remove("hidden");
+  });
+
+  closeChatEl.addEventListener("click", () => {
+    chatBoxEl.classList.add("hidden");
+  });
+
+  const chatResponses = {
+    "What’s the best skincare routine for oily skin?": "Cleanse twice daily, use an oil-free moisturizer, and don't skip sunscreen!",
+    "Do your products contain parabens?": "Nope! All our products are 100% paraben-free.",
+    "Are your products cruelty-free?": "Absolutely! We never test on animals.",
+    "How long does shipping take?": "Shipping usually takes 3–5 business days within the country.",
+    "Can I return a product?": "Yes! We have a 15-day return policy for unopened products."
+  };
+
+  document.querySelectorAll(".question").forEach(qBtn => {
+    qBtn.addEventListener("click", () => {
+      const userQuestion = qBtn.textContent.trim();
+      const answer = chatResponses[userQuestion] || "Let me get back to you on that!";
+      chatResponseEl.textContent = answer;
+    });
   });
 </script>
 
