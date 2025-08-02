@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>colorAnalysis (fixed)</title>
+  <!-- If you have a separate CSS file, you can still include it. This page also has minimal inline styles so it works standalone. -->
+  <link rel="stylesheet" href="colorAnalysis.css" />
+  <style>
+    /* Minimal styles so the demo is usable even without colorAnalysis.css */
+    body { margin: 0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, Arial, "Apple Color Emoji", "Segoe UI Emoji"; }
+    .header { position: sticky; top: 0; background: #fff; border-bottom: 1px solid #eee; z-index: 10; }
+    nav.bar { display: flex; align-items: center; justify-content: space-between; padding: 0.75rem 1rem; }
+    .menu { display: flex; gap: 1rem; list-style: none; margin: 0; padding: 0; }
+    .menu a { text-decoration: none; color: #222; }
+    .dropdown { position: relative; }
+    .dropdown-menu { position: absolute; top: 100%; left: 0; background: #fff; border: 1px solid #eee; list-style: none; padding: 0.5rem; margin: 0; display: none; }
+    .dropdown:hover .dropdown-menu { display: block; }
+    .profile-container { position: relative; }
+    .profile-dropdown { position: absolute; right: 0; top: 100%; background: #fff; border: 1px solid #eee; list-style: none; margin: 0; padding: 0.5rem; display: none; }
+    .profile-dropdown a { display: block; padding: 0.25rem 0.5rem; text-decoration: none; color: #222; }
+
+    .chatbox-icon { position: fixed; right: 1rem; bottom: 1rem; cursor: pointer; font-size: 1.5rem; }
+    .chatbox { position: fixed; right: 1rem; bottom: 3.25rem; width: 320px; background: #fff; border: 1px solid #ddd; border-radius: 8px; box-shadow: 0 8px 24px rgba(0,0,0,0.12); }
+    .hidden { display: none; }
+    .chat-header { display: flex; align-items: center; justify-content: space-between; padding: 0.5rem 0.75rem; border-bottom: 1px solid #eee; }
+    .chat-body { padding: 0.75rem; }
+    .question-list { display: grid; gap: 0.5rem; }
+    .question { width: 100%; padding: 0.5rem; cursor: pointer; }
+    .chat-response { margin-top: 0.75rem; padding: 0.5rem; border: 1px dashed #ddd; min-height: 2.25rem; border-radius: 6px; }
+
+    /* Hero section directly BELOW the nav that changes color */
+    #colorHero { padding: 2rem 1rem; transition: background-color 150ms ease-out; }
+    .color-hero-content { max-width: 920px; margin: 0; }
+    /* NEW: layout wrapper inside the hero so the background wraps BOTH sides */
+    #colorHero .cw { max-width: 1100px; margin: 0 auto; display: grid; grid-template-columns: 1.2fr 0.8fr; gap: 2rem; align-items: stretch; }
+    @media (max-width: 900px) { #colorHero .cw { grid-template-columns: 1fr; } }
+
+    /* Give the left hero copy a soft panel so text stays readable on bright colors */
+    .color-hero-content-panel { background: rgba(255,255,255,0.25); border-radius: 12px; padding: 2rem; }
+    .color-hero-content { max-width: 920px; margin: 0 auto; }
+
+    .color-wheel-section { text-align: center; margin: 0; padding: 1rem; background-color: #fff6ec; border-radius: 10px; width: 100%; max-width: 420px; box-shadow: 0 4px 10px rgba(0,0,0,0.1); justify-self: end; }
+    .color-tools { margin-top: 1rem; }
+    .color-controls { display: flex; gap: 0.5rem; align-items: center; }
+    .result-colors { margin-top: 0.75rem; display: grid; grid-template-columns: repeat(auto-fill, minmax(80px, 1fr)); gap: 0.5rem; }
+    .result-colors .swatch { height: 60px; border-radius: 8px; border: 1px solid #e5e7eb; display: flex; align-items: center; justify-content: center; font-size: 12px; font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace; }
+
+    main.container { max-width: 1000px; margin: 1.5rem auto; padding: 0 1rem 2rem; }
+    .theme { margin-bottom: 2rem; }
+    .images { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 0.75rem; }
+    .images img { width: 100%; height: auto; border-radius: 10px; border: 1px solid #eee; }
+  </style>
+</head>
+<body>
+  <div class="header second-name">
+    <nav class="bar">
+      <a href="in" class="logo">
+        <h2 class="logoT">✨Skin Care</h2>
+      </a>
+      <ul class="menu">
+        <li class="item"><a href="index.html" class="link">Home</a></li>
+        <li><a href="clinic.html" class="link">Clinic</a></li>
+        <li><a href="bookingList.html" class="link">Booking List</a></li>
+        <li class="dropdown">
+          <a href="#" class="link">Test</a>
+          <ul class="dropdown-menu">
+            <li><a href="#" class="dropdown-link">Color Analysis</a></li>
+            <li><a href="bodyShape.html" class="dropdown-link">Body Shape Test</a></li>
+            <li><a href="hairTest.html" class="dropdown-link">Hair Test</a></li>
+            <li><a href="#" class="dropdown-link">Face/Skin Test</a></li>
+          </ul>
+        </li>
+        <li class="item"><a href="treatment.html" class="link">Treatment</a></li>
+      </ul>
+      <div class="profile-container">
+        <a href="#" class="profile-icon">👤</a>
+        <ul class="profile-dropdown">
+          <li><a href="#">My Profile</a></li>
+          <li><a href="Login.html">Log In</a></li>
+        </ul>
+      </div>
+    </nav>
+  </div>
+
+  <div class="chatbox-icon" aria-label="Open chat" title="Open chat">💬</div>
+  <div id="chatbox" class="chatbox hidden" role="dialog" aria-modal="true">
+    <div class="chat-header">
+      <span>SkinCare Help</span>
+      <button id="close-chat" aria-label="Close chat">×</button>
+    </div>
+    <div class="chat-body">
+      <div class="question-list">
+        <button class="question">What's the best skincare routine for oily skin?</button>
+        <button class="question">Do your products contain parabens?</button>
+        <button class="question">Are your products cruelty-free?</button>
+        <button class="question">How long does shipping take?</button>
+        <button class="question">Can I return a product?</button>
+      </div>
+      <div id="chat-response" class="chat-response"></div>
+    </div>
+  </div>
+
+  <!-- ✅ HERO SECTION (only this block changes color) -->
+  <section id="colorHero" class="colorhero" style="background:#f4b26d33">
+    <div class="cw">
+      <div class="color-hero-content color-hero-content-panel">
+        <h1>🎨 Color Wheel</h1>
+        <p>Want to know what colors look good together?<br />Try out our interactive color tool to personalize your palette!</p>
+      </div>
+
+      <section class="color-wheel-section">
+      <h2><span style="color:rgba(0, 0, 0, 0.672);">Try the Color Palette</span></h2>
+      <input type="color" id="colorPicker" value="#f4b26d" />
+      <p><span style="color:rgba(0, 0, 0, 0.675);">Pick a color to change the hero section below the nav.</span></p>
+
+      <section class="color-tools">
+        <h3><span style="color:rgba(0, 0, 0, 0.672);">🎨 Generate Color Combinations</span></h3>
+        <div class="color-controls">
+          <select id="schemeType">
+            <option value="mono">Monochromatic</option>
+            <option value="comp">Complementary</option>
+            <option value="analog">Analogous</option>
+            <option value="triad">Triadic</option>
+          </select>
+          <button class="btn" id="generate" type="button">Generate</button>
+        </div>
+        <div class="result-colors" id="resultColors"></div>
+      </section>
+    </section>
+    </div>
+  </section>
+  <!-- ✅ CLOSE the hero before main so the color doesn't leak to the whole page -->
+
+  <main class="container">
+    <section class="theme">
+      <h2>Soft Summer</h2>
+      <p>Soft Summers have cool undertones and suit muted, pastel, or smoky colors.</p>
+      <div class="images">
+        <img src="Pics/summer.jpg" alt="Soft Summer Cool" />
+        <img src="Pics/summer.jpg" alt="Soft Summer Light" />
+      </div>
+    </section>
+
+    <section class="theme">
+      <h2>Cool Winter</h2>
+      <p>Cool Winters shine in icy, deep, and jewel tones like sapphire, black, and fuchsia.</p>
+      <div class="images">
+        <img src="Pics/winterjpg.jpg" alt="Cool Winter 1" />
+        <img src="Pics/winterjpg.jpg" alt="Cool Winter 2" />
+      </div>
+    </section>
+
+    <section class="theme">
+      <h2>Warm Autumn</h2>
+      <p>Warm Autumns glow in earthy, golden tones like olive, rust, and camel.</p>
+      <div class="images">
+        <img src="Pics/autumn.jpg" alt="Warm Autumn 1" />
+        <img src="Pics/autumn.jpg" alt="Warm Autumn 2" />
+      </div>
+    </section>
+
+    <section class="theme">
+      <h2>Light Spring</h2>
+      <p>Light Springs shine in bright, light colors such as peach, coral, and mint.</p>
+      <div class="images">
+        <img src="Pics/spring.jpg" alt="Light Spring 1" />
+        <img src="Pics/spring.jpg" alt="Light Spring 2" />
+      </div>
+    </section>
+  </main>
+<!-- New standalone article section (blog-style) -->
+<section id="colorTheory" class="blog-section">
+  <div class="blog-wrap prose">
+    <h2>Color Theory 101: Picking Palettes That Love Your Skin</h2>
+    <p>Use the generator above to explore harmonies, then apply these guidelines to build palettes that look cohesive in UI and flattering in photos or outfits.</p>
+
+    <h3>1) Harmony types at a glance</h3>
+    <ul>
+      <li><strong>Monochromatic:</strong> Same hue, different lightness/saturation. Clean and minimal; great for backgrounds, buttons, and shadows.</li>
+      <li><strong>Complementary:</strong> Opposites on the wheel. High contrast; use one as the hero and the other as an accent to avoid visual noise.</li>
+      <li><strong>Analogous:</strong> Neighbors on the wheel. Soft and blended; perfect for gradients and section backgrounds.</li>
+      <li><strong>Triadic:</strong> Three evenly spaced hues. Balanced but lively; keep two muted and one vivid for focus.</li>
+    </ul>
+
+    <h3>2) Contrast & accessibility</h3>
+    <p>For text on colored backgrounds, aim for sufficient contrast. A practical rule: if you lighten a color for a background, darken the text (or use near-black); if you darken the background, use near-white text.</p>
+    <div class="callout"><strong>Tip:</strong> Keep semantic roles clear—one brand color for actions, a calmer neutral for surfaces, and a vivid accent sparingly.</div>
+
+    <h3>3) Undertone & temperature</h3>
+    <p>Colors lean <em>warm</em> (reds/oranges/yellows) or <em>cool</em> (blues/greens/violets). When in doubt, keep temperatures consistent and let contrast come from light vs. dark rather than warm vs. cool.</p>
+
+    <h3>4) Building a small, versatile system</h3>
+    <ul>
+      <li><strong>Primary:</strong> The main brand or highlight color.</li>
+      <li><strong>Neutral scale:</strong> 4–6 steps from background to text.</li>
+      <li><strong>Accent:</strong> One pop color for emphasis (alerts, badges).</li>
+      <li><strong>State tints:</strong> Success, warning, danger—muted so they don’t overpower content.</li>
+    </ul>
+
+    <h3>5) Real-world workflow</h3>
+    <ul>
+      <li>Pick a base color (your picker).</li>
+      <li>Generate a scheme (analogous/triadic for breadth, mono for depth).</li>
+      <li>Nudge saturation/lightness to get accessible pairs for text and UI states.</li>
+      <li>Test on both light and dark surfaces; export tokens as HEX/HSL.</li>
+    </ul>
+  </div>
+</section>
+
+
+  <!-- JS -->
+  <script>
+    // 🔒 Profile dropdown toggle
+    const profileIcon = document.querySelector('.profile-icon');
+    const profileDropdown = document.querySelector('.profile-dropdown');
+    profileIcon.addEventListener('click', function (e) {
+      e.preventDefault();
+      profileDropdown.style.display = profileDropdown.style.display === 'block' ? 'none' : 'block';
+    });
+    window.addEventListener('click', function (e) {
+      if (!profileIcon.contains(e.target) && !profileDropdown.contains(e.target)) {
+        profileDropdown.style.display = 'none';
+      }
+    });
+
+    // 💬 Chat module logic
+    const chatIconEl = document.querySelector('.chatbox-icon');
+    const chatBoxEl = document.getElementById('chatbox');
+    const closeChatEl = document.getElementById('close-chat');
+    const chatResponseEl = document.getElementById('chat-response');
+
+    chatIconEl.addEventListener('click', () => {
+      chatBoxEl.classList.remove('hidden');
+    });
+    closeChatEl.addEventListener('click', () => {
+      chatBoxEl.classList.add('hidden');
+    });
+
+    const chatResponses = {
+      "What's the best skincare routine for oily skin?": "Cleanse twice daily, use an oil-free moisturizer, and don't skip sunscreen!",
+      "Do your products contain parabens?": 'Nope! All our products are 100% paraben-free.',
+      'Are your products cruelty-free?': 'Absolutely! We never test on animals.',
+      'How long does shipping take?': 'Shipping usually takes 3–5 business days within the country.',
+      'Can I return a product?': 'Yes! We have a 15-day return policy for unopened products.'
+    };
+
+    document.querySelectorAll('.question').forEach((qBtn) => {
+      qBtn.addEventListener('click', () => {
+        const userQuestion = qBtn.textContent.trim();
+        const answer = chatResponses[userQuestion] || 'Let me get back to you on that!';
+        chatResponseEl.textContent = answer;
+      });
+    });
+
+    // 🎯 HERO color change (ONLY the hero below the nav updates)
+    window.addEventListener('load', () => {
+      const colorPicker = document.getElementById('colorPicker');
+      const hero = document.getElementById('colorHero');
+      colorPicker.addEventListener('input', (e) => {
+        const pickedColor = e.target.value;
+        hero.style.backgroundColor = pickedColor;
+      });
+    });
+
+    // 🎨 Color scheme generator (wired to the existing controls)
+    function hexToHSL(H) {
+      let r = 0, g = 0, b = 0;
+      if (H.length === 4) {
+        r = '0x' + H[1] + H[1];
+        g = '0x' + H[2] + H[2];
+        b = '0x' + H[3] + H[3];
+      } else {
+        r = '0x' + H[1] + H[2];
+        g = '0x' + H[3] + H[4];
+        b = '0x' + H[5] + H[6];
+      }
+      r /= 255; g /= 255; b /= 255;
+      const cmin = Math.min(r, g, b), cmax = Math.max(r, g, b), delta = cmax - cmin;
+      let h = 0, s = 0, l = 0;
+      if (delta === 0) h = 0;
+      else if (cmax === r) h = ((g - b) / delta) % 6;
+      else if (cmax === g) h = (b - r) / delta + 2;
+      else h = (r - g) / delta + 4;
+      h = Math.round(h * 60);
+      if (h < 0) h += 360;
+      l = (cmax + cmin) / 2;
+      s = delta === 0 ? 0 : delta / (1 - Math.abs(2 * l - 1));
+      s = +(s * 100).toFixed(1);
+      l = +(l * 100).toFixed(1);
+      return [h, s, l];
+    }
+
+    function hslToHex(h, s, l) {
+      s /= 100; l /= 100;
+      const c = (1 - Math.abs(2 * l - 1)) * s;
+      const x = c * (1 - Math.abs((h / 60) % 2 - 1));
+      const m = l - c / 2;
+      let r = 0, g = 0, b = 0;
+      if (0 <= h && h < 60) { r = c; g = x; b = 0; }
+      else if (60 <= h && h < 120) { r = x; g = c; b = 0; }
+      else if (120 <= h && h < 180) { r = 0; g = c; b = x; }
+      else if (180 <= h && h < 240) { r = 0; g = x; b = c; }
+      else if (240 <= h && h < 300) { r = x; g = 0; b = c; }
+      else if (300 <= h && h < 360) { r = c; g = 0; b = x; }
+      r = Math.round((r + m) * 255).toString(16).padStart(2, '0');
+      g = Math.round((g + m) * 255).toString(16).padStart(2, '0');
+      b = Math.round((b + m) * 255).toString(16).padStart(2, '0');
+      return '#' + r + g + b;
+    }
+
+    function generateScheme(type, baseHex) {
+      const [h, s, l] = hexToHSL(baseHex);
+      let hues = [];
+      switch (type) {
+        case 'mono':
+          hues = [h, h, h];
+          break;
+        case 'comp':
+          hues = [h, (h + 180) % 360];
+          break;
+        case 'analog':
+          hues = [h, (h + 30) % 360, (h + 330) % 360];
+          break;
+        case 'triad':
+          hues = [h, (h + 120) % 360, (h + 240) % 360];
+          break;
+        default:
+          hues = [h];
+      }
+      return hues.map((newH) => hslToHex(newH, s, l));
+    }
+
+    const schemeType = document.getElementById('schemeType');
+    const generateBtn = document.getElementById('generate');
+    const resultColors = document.getElementById('resultColors');
+
+    generateBtn.addEventListener('click', () => {
+      const baseColor = document.getElementById('colorPicker').value; // use the actual picker
+      const type = schemeType.value;
+      const results = generateScheme(type, baseColor);
+      resultColors.innerHTML = '';
+      results.forEach((color) => {
+        const swatch = document.createElement('div');
+        swatch.className = 'swatch';
+        swatch.style.backgroundColor = color;
+        swatch.title = color;
+        swatch.setAttribute('title', color.toUpperCase());
+        resultColors.appendChild(swatch);
+      });
+    });
+  </script>
+</body>
+</html>
