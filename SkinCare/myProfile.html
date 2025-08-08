@@ -1,0 +1,492 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Profile Settings - SkinCare</title>
+  <link rel="stylesheet" href="modern-styles.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+  <!-- Modern Navigation Bar -->
+  <nav class="modern-nav">
+    <div class="nav-container">
+        <div class="nav-brand">
+            <a href="index.html" class="brand-logo">SkinCare</a>
+        </div>
+        
+        <div class="nav-links">
+            <a href="index.html" class="nav-link">Home</a>
+            <div class="nav-dropdown">
+                <a href="#" class="nav-link dropdown-trigger">
+                    Services
+                    <svg class="dropdown-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none">
+                        <path d="m6 9 6 6 6-6" stroke="currentColor" stroke-width="2"/>
+                    </svg>
+                </a>
+                <div class="nav-dropdown-menu">
+                    <a href="bodyShape.html" class="dropdown-item">Body Shape Analysis</a>
+                    <a href="colorAnalysis.html" class="dropdown-item">Color Analysis</a>
+                    <a href="hairTest.html" class="dropdown-item">Hair Test</a>
+                    <a href="treatment.html" class="dropdown-item">Treatments</a>
+                </div>
+            </div>
+            <a href="clinic.html" class="nav-link">Clinics</a>
+            <a href="bookingList.html" class="nav-link">Bookings</a>
+        </div>
+        
+        <div class="nav-actions">
+            <div class="profile-container">
+                <button class="profile-btn active" aria-label="User profile menu">
+                    <div class="profile-avatar">
+                        <img src="https://images.unsplash.com/photo-1494790108755-2616b612b786?w=40&h=40&fit=crop&crop=face" alt="Profile" />
+                    </div>
+                    <span class="profile-name">Sarah</span>
+                </button>
+            </div>
+        </div>
+    </div>
+  </nav>
+
+  <div class="profile-page">
+    <!-- Profile Header -->
+    <div class="profile-header">
+      <div class="profile-cover">
+        <div class="cover-gradient"></div>
+        <button class="cover-change-btn">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+            <path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z" stroke="currentColor" stroke-width="2"/>
+            <circle cx="12" cy="13" r="4" stroke="currentColor" stroke-width="2"/>
+          </svg>
+          Change Cover
+        </button>
+      </div>
+      
+      <div class="profile-info">
+        <div class="profile-avatar-large">
+          <img src="https://images.unsplash.com/photo-1494790108755-2616b612b786?w=120&h=120&fit=crop&crop=face" alt="Sarah Johnson" />
+          <div class="avatar-status online"></div>
+          <button class="avatar-change-btn">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
+              <path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z" stroke="currentColor" stroke-width="2"/>
+              <circle cx="12" cy="13" r="4" stroke="currentColor" stroke-width="2"/>
+            </svg>
+          </button>
+        </div>
+        
+        <div class="profile-details">
+          <h1 class="profile-name">Sarah Johnson</h1>
+          <p class="profile-title">Skincare Enthusiast</p>
+          <div class="profile-stats">
+            <div class="stat-item">
+              <span class="stat-number">127</span>
+              <span class="stat-label">Products Tried</span>
+            </div>
+            <div class="stat-item">
+              <span class="stat-number">4.9</span>
+              <span class="stat-label">Avg Rating</span>
+            </div>
+            <div class="stat-item">
+              <span class="stat-number">2.3k</span>
+              <span class="stat-label">Followers</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Profile Content -->
+    <div class="profile-content">
+      <!-- Sidebar -->
+      <aside class="profile-sidebar">
+        <div class="sidebar-card">
+          <h3 class="sidebar-title">Quick Stats</h3>
+          <div class="quick-stats">
+            <div class="quick-stat">
+              <div class="quick-stat-icon">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+                  <path d="M12 2L2 7l10 5 10-5-10-5z" stroke="currentColor" stroke-width="2"/>
+                  <path d="m2 17 10 5 10-5" stroke="currentColor" stroke-width="2"/>
+                  <path d="m2 12 10 5 10-5" stroke="currentColor" stroke-width="2"/>
+                </svg>
+              </div>
+              <div class="quick-stat-info">
+                <span class="quick-stat-number">47</span>
+                <span class="quick-stat-label">Favorite Products</span>
+              </div>
+            </div>
+            
+            <div class="quick-stat">
+              <div class="quick-stat-icon">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+                  <path d="M9 12l2 2 4-4" stroke="currentColor" stroke-width="2"/>
+                  <circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="2"/>
+                </svg>
+              </div>
+              <div class="quick-stat-info">
+                <span class="quick-stat-number">23</span>
+                <span class="quick-stat-label">Reviews Written</span>
+              </div>
+            </div>
+            
+            <div class="quick-stat">
+              <div class="quick-stat-icon">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+                  <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z" stroke="currentColor" stroke-width="2"/>
+                </svg>
+              </div>
+              <div class="quick-stat-info">
+                <span class="quick-stat-number">12</span>
+                <span class="quick-stat-label">Orders This Year</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="sidebar-card">
+          <h3 class="sidebar-title">Skin Profile</h3>
+          <div class="skin-profile">
+            <div class="skin-type">
+              <span class="skin-label">Skin Type:</span>
+              <span class="skin-value">Combination</span>
+            </div>
+            <div class="skin-concerns">
+              <span class="skin-label">Main Concerns:</span>
+              <div class="concern-tags">
+                <span class="concern-tag">Acne</span>
+                <span class="concern-tag">Dark Spots</span>
+                <span class="concern-tag">Hydration</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </aside>
+
+      <!-- Main Content -->
+      <main class="profile-main">
+        <div class="profile-tabs">
+          <nav class="tabs">
+            <button class="tab active" data-tab-id="account-settings">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+                <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" stroke="currentColor" stroke-width="2"/>
+                <circle cx="12" cy="7" r="4" stroke="currentColor" stroke-width="2"/>
+              </svg>
+              Account Settings
+            </button>
+            <button class="tab" data-tab-id="security">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+                <rect width="18" height="11" x="3" y="11" rx="2" ry="2" stroke="currentColor" stroke-width="2"/>
+                <path d="M7 11V7a5 5 0 0 1 10 0v4" stroke="currentColor" stroke-width="2"/>
+              </svg>
+              Security
+            </button>
+            <button class="tab" data-tab-id="preferences">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+                <circle cx="12" cy="12" r="3" stroke="currentColor" stroke-width="2"/>
+                <path d="M12 1v6M12 17v6M4.22 4.22l4.24 4.24M15.54 15.54l4.24 4.24M1 12h6M17 12h6M4.22 19.78l4.24-4.24M15.54 8.46l4.24-4.24" stroke="currentColor" stroke-width="2"/>
+              </svg>
+              Preferences
+            </button>
+            <button class="tab" data-tab-id="notifications">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+                <path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9" stroke="currentColor" stroke-width="2"/>
+                <path d="M13.73 21a2 2 0 0 1-3.46 0" stroke="currentColor" stroke-width="2"/>
+              </svg>
+              Notifications
+            </button>
+          </nav>
+        </div>
+
+        <div class="tab-content">
+          <div class="tab-panel active" id="account-settings">
+            <div class="panel-header">
+              <h2 class="panel-title">Account Settings</h2>
+              <p class="panel-description">Manage your personal information and account details</p>
+            </div>
+            
+            <form class="profile-form" id="profile-form">
+              <div class="form-section">
+                <h3 class="section-title">Personal Information</h3>
+                <div class="form-grid">
+                  <div class="form-field">
+                    <label for="firstName" class="field-label">First Name</label>
+                    <input type="text" id="firstName" name="firstName" class="field-input" value="Sarah" required readonly />
+                  </div>
+                  
+                  <div class="form-field">
+                    <label for="lastName" class="field-label">Last Name</label>
+                    <input type="text" id="lastName" name="lastName" class="field-input" value="Johnson" required readonly />
+                  </div>
+                  
+                  <div class="form-field full-width">
+                    <label for="email" class="field-label">Email Address</label>
+                    <input type="email" id="email" name="email" class="field-input" value="sarah.johnson@example.com" required readonly />
+                  </div>
+                  
+                  <div class="form-field">
+                    <label for="phone" class="field-label">Phone Number</label>
+                    <input type="tel" id="phone" name="phone" class="field-input" value="+1 (555) 123-4567" readonly />
+                  </div>
+                  
+                  <div class="form-field">
+                    <label for="birthdate" class="field-label">Birth Date</label>
+                    <input type="date" id="birthdate" name="birthdate" class="field-input" value="1995-06-15" readonly />
+                  </div>
+                </div>
+              </div>
+
+              <div class="form-section">
+                <h3 class="section-title">Address Information</h3>
+                <div class="form-grid">
+                  <div class="form-field full-width">
+                    <label for="address" class="field-label">Street Address</label>
+                    <input type="text" id="address" name="address" class="field-input" value="190/110 slums" readonly />
+                  </div>
+                  
+                  <div class="form-field">
+                    <label for="city" class="field-label">City</label>
+                    <input type="text" id="city" name="city" class="field-input" value="ygn" readonly />
+                  </div>
+                  
+                  <div class="form-field">
+                    <label for="state" class="field-label">Township</label>
+                    <select id="state" name="state" class="field-input" disabled>
+                      <option value="sc" selected>Sanchaung</option>
+                      <option value="kmy">Kamaryut</option>
+                      <option value="kba">Kabaraye</option>
+                    </select>
+                  </div>
+                  
+                  <div class="form-field">
+                    <label for="zipCode" class="field-label">ZIP Code</label>
+                    <input type="text" id="zipCode" name="zipCode" class="field-input" value="90210" readonly />
+                  </div>
+                  
+                  <div class="form-field">
+                    <label for="country" class="field-label">Country</label>
+                    <select id="country" name="country" class="field-input" disabled>
+                      <option value="mm" selected>Myanmar</option>
+                      <option value="jpn">Japan</option>
+                      <option value="atk">Anteiku</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+
+              <div class="form-actions">
+                <!-- Edit Mode Button (visible by default) -->
+                <button type="button" class="btn btn-primary" id="edit-btn">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+                    <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7" stroke="currentColor" stroke-width="2"/>
+                    <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z" stroke="currentColor" stroke-width="2"/>
+                  </svg>
+                  Edit Profile
+                </button>
+                
+                <!-- Save/Cancel Buttons (hidden by default) -->
+                <div class="edit-actions" id="edit-actions" style="display: none;">
+                  <button type="button" class="btn btn-secondary" id="cancel-btn">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+                      <path d="m18 6-12 12" stroke="currentColor" stroke-width="2"/>
+                      <path d="m6 6 12 12" stroke="currentColor" stroke-width="2"/>
+                    </svg>
+                    Cancel
+                  </button>
+                  <button type="submit" class="btn btn-primary" id="save-btn">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+                      <path d="M20 6L9 17l-5-5" stroke="currentColor" stroke-width="2"/>
+                    </svg>
+                    Save Changes
+                  </button>
+                </div>
+              </div>
+            </form>
+          </div>
+
+          <div class="tab-panel" id="security">
+            <div class="panel-header">
+              <h2 class="panel-title">Security Settings</h2>
+              <p class="panel-description">Manage your password and security preferences</p>
+            </div>
+            
+            <div class="security-content">
+              <div class="security-section">
+                <h3 class="section-title">Password</h3>
+                <p class="section-description">Last changed 3 months ago</p>
+                <button class="btn btn-outline">Change Password</button>
+              </div>
+              
+              <div class="security-section">
+                <h3 class="section-title">Two-Factor Authentication</h3>
+                <p class="section-description">Add an extra layer of security to your account</p>
+                <button class="btn btn-primary">Enable 2FA</button>
+              </div>
+            </div>
+          </div>
+
+          <div class="tab-panel" id="preferences">
+            <div class="panel-header">
+              <h2 class="panel-title">Preferences</h2>
+              <p class="panel-description">Customize your SkinCare experience</p>
+            </div>
+            
+            <div class="preferences-content">
+              <div class="preference-item">
+                <div class="preference-info">
+                  <h4 class="preference-title">Theme</h4>
+                  <p class="preference-description">Choose your preferred color scheme</p>
+                </div>
+                <div class="preference-control">
+                  <select class="field-input">
+                    <option value="auto">Auto (System)</option>
+                    <option value="light">Light</option>
+                    <option value="dark">Dark</option>
+                  </select>
+                </div>
+              </div>
+              
+              <div class="preference-item">
+                <div class="preference-info">
+                  <h4 class="preference-title">Language</h4>
+                  <p class="preference-description">Select your preferred language</p>
+                </div>
+                <div class="preference-control">
+                  <select class="field-input">
+                    <option value="en" selected>English</option>
+                    <option value="es">Español</option>
+                    <option value="fr">Français</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="tab-panel" id="notifications">
+            <div class="panel-header">
+              <h2 class="panel-title">Notifications</h2>
+              <p class="panel-description">Your recent booking appointments and updates</p>
+            </div>
+            
+            <div class="notifications-content">
+              <!-- Notification List Container -->
+              <div class="notification-list" id="notification-list">
+                <!-- Empty State (shown when no notifications) -->
+                <div class="empty-notifications" id="empty-notifications">
+                  <div class="empty-icon">
+                    <svg width="48" height="48" viewBox="0 0 24 24" fill="none">
+                      <path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9" stroke="currentColor" stroke-width="2"/>
+                      <path d="M13.73 21a2 2 0 0 1-3.46 0" stroke="currentColor" stroke-width="2"/>
+                    </svg>
+                  </div>
+                  <h3 class="empty-title">No notifications yet</h3>
+                  <p class="empty-description">Your booking appointments and updates will appear here</p>
+                </div>
+              </div>
+
+              <!-- Demo Section (for testing) -->
+              <div class="notification-demo" style="margin-bottom: var(--space-xl);">
+                <button class="btn btn-primary" id="demo-booking-btn">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+                    <path d="M20 6L9 17l-5-5" stroke="currentColor" stroke-width="2"/>
+                  </svg>
+                  Simulate Booking Notification
+                </button>
+                <p style="font-size: 0.85rem; color: var(--text-muted); margin-top: var(--space-sm);">
+                  Click to test the notification system
+                </p>
+              </div>
+
+              <!-- Notification Settings Section -->
+              <div class="notification-settings">
+                <h4 class="settings-title">Notification Preferences</h4>
+                <div class="notification-group">
+                  <div class="notification-item">
+                    <div class="notification-info">
+                      <span class="notification-title">Booking Confirmations</span>
+                      <span class="notification-description">Get notified when appointments are confirmed</span>
+                    </div>
+                    <label class="toggle-switch">
+                      <input type="checkbox" checked id="booking-notifications">
+                      <span class="toggle-slider"></span>
+                    </label>
+                  </div>
+                  
+                  <div class="notification-item">
+                    <div class="notification-info">
+                      <span class="notification-title">Appointment Reminders</span>
+                      <span class="notification-description">Receive reminders 24 hours before appointments</span>
+                    </div>
+                    <label class="toggle-switch">
+                      <input type="checkbox" checked id="reminder-notifications">
+                      <span class="toggle-slider"></span>
+                    </label>
+                  </div>
+
+                  <div class="notification-item">
+                    <div class="notification-info">
+                      <span class="notification-title">Treatment Updates</span>
+                      <span class="notification-description">Updates about your skincare treatments</span>
+                    </div>
+                    <label class="toggle-switch">
+                      <input type="checkbox" checked id="treatment-notifications">
+                      <span class="toggle-slider"></span>
+                    </label>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </main>
+    </div>
+  </div>
+
+  <!-- Chat Component -->
+  <div class="chatbox-icon" role="button" tabindex="0" aria-label="Open chat support">
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+      <path d="m3 21 1.9-5.7a8.5 8.5 0 1 1 3.8 3.8z" stroke="currentColor" stroke-width="2"/>
+    </svg>
+  </div>
+
+  <div id="chatbox" class="chatbox hidden" role="dialog" aria-labelledby="chat-header">
+    <div class="chat-header" id="chat-header">
+      <div class="chat-header-info">
+        <div class="chat-avatar">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" stroke="currentColor" stroke-width="2"/>
+            <circle cx="12" cy="7" r="4" stroke="currentColor" stroke-width="2"/>
+          </svg>
+        </div>
+        <div>
+          <span class="chat-title">SkinCare Support</span>
+          <span class="chat-status">Online</span>
+        </div>
+      </div>
+      <button id="close-chat" class="chat-close" aria-label="Close chat">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+          <path d="m18 6-12 12" stroke="currentColor" stroke-width="2"/>
+          <path d="m6 6 12 12" stroke="currentColor" stroke-width="2"/>
+        </svg>
+      </button>
+    </div>
+    <div class="chat-body">
+      <div class="chat-welcome">
+        <p>Hi Sarah! How can we help you today?</p>
+      </div>
+      <div class="question-list">
+        <button class="question">What's the best skincare routine for oily skin?</button>
+        <button class="question">Do your products contain parabens?</button>
+        <button class="question">Are your products cruelty-free?</button>
+        <button class="question">How long does shipping take?</button>
+        <button class="question">Can I return a product?</button>
+      </div>
+      <div id="chat-response" class="chat-response"></div>
+    </div>
+  </div>
+
+  <!-- TypeScript Modules -->
+  <script type="module" src="app.js"></script>
+</body>
+</html>
