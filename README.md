@@ -1,2 +1,0 @@
-# SkinCare
-School Project
