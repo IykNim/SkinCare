@@ -46,6 +46,39 @@
                     </svg>
                 </div>
                 
+                <!-- Notification Bell -->
+                <div class="notification-container">
+                    <button class="notification-btn" aria-label="Notifications" id="notification-btn">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                            <path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9" stroke="currentColor" stroke-width="2"/>
+                            <path d="M13.73 21a2 2 0 0 1-3.46 0" stroke="currentColor" stroke-width="2"/>
+                        </svg>
+                        <span class="notification-badge" id="notification-badge">0</span>
+                    </button>
+                    
+                    <!-- Notification Dropdown -->
+                    <div class="notification-dropdown" id="notification-dropdown">
+                        <div class="notification-header">
+                            <h3>Notifications</h3>
+                            <button class="clear-all-btn" id="clear-all-btn">Clear All</button>
+                        </div>
+                        <div class="notification-list" id="nav-notification-list">
+                            <div class="empty-notifications" id="nav-empty-notifications">
+                                <div class="empty-icon">
+                                    <svg width="48" height="48" viewBox="0 0 24 24" fill="none">
+                                        <path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9" stroke="currentColor" stroke-width="2"/>
+                                        <path d="M13.73 21a2 2 0 0 1-3.46 0" stroke="currentColor" stroke-width="2"/>
+                                    </svg>
+                                </div>
+                                <p>No notifications yet</p>
+                            </div>
+                        </div>
+                        <div class="notification-footer">
+                            <button class="view-all-btn" onclick="window.location.href='myProfile.html#notifications-section'">View All</button>
+                        </div>
+                    </div>
+                </div>
+                
                 <div class="profile-container">
                     <button class="profile-btn" aria-label="User profile menu">
                         <div class="profile-avatar">
@@ -119,18 +152,18 @@
                             <path d="m9 18 6-6-6-6" stroke="currentColor" stroke-width="2"/>
                         </svg>
                     </button>
-                    <button class="btn btn-secondary">
+                    <!-- <button class="btn btn-secondary">
                         <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
                             <polygon points="5,3 19,12 5,21" fill="currentColor"/>
                         </svg>
                         <span>Watch Story</span>
-                    </button>
+                    </button> -->
                 </div>
             </div>
             <div class="hero-image">
                 <div class="hero-card">
                     <img src="https://images.unsplash.com/photo-1556228578-8c89e6adf883?w=400&h=500&fit=crop" alt="Skincare Products" />
-                    <div class="hero-card-overlay">
+                    <!-- <div class="hero-card-overlay">
                         <div class="hero-stats">
                             <div class="stat-item">
                                 <span class="stat-number">50K+</span>
@@ -139,7 +172,7 @@
                             <div class="stat-item">
                                 <span class="stat-number">4.9</span>
                                 <span class="stat-label">Rating</span>
-                            </div>
+                            </div> -->
                         </div>
                     </div>
                 </div>
@@ -304,5 +337,7 @@
 
     <!-- TypeScript Modules -->
     <script type="module" src="index-app.js"></script>
+    <script type="module" src="app.js"></script>
+    <script type="module" src="notifications.js"></script>
 </body>
 </html>

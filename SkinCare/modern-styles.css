@@ -63,26 +63,7 @@
   --transition-slow: 500ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-/* Dark theme */
-[data-theme="dark"] {
-  --primary: #ff6b9d;
-  --primary-dark: #e55a8a;
-  --primary-light: #ff8fb3;
-  --secondary: #4ecdc4;
-  --accent: #45b7aa;
-  --background: #0f0f0f;
-  --surface: #1a1a1a;
-  --surface-elevated: #262626;
-  --surface-hover: #2d2d2d;
-  --text-primary: #ffffff;
-  --text-secondary: #d1d5db;
-  --text-muted: #9ca3af;
-  --border: #374151;
-  --border-light: #2d3748;
-  --gradient-surface: linear-gradient(145deg, #1a1a1a 0%, #262626 100%);
-  --gradient-background: radial-gradient(ellipse at top, #1a0a1a 0%, var(--background) 50%);
-  --gradient-hero: linear-gradient(135deg, rgba(255, 107, 157, 0.2) 0%, rgba(78, 205, 196, 0.2) 100%);
-}
+/* Dark theme removed - using light theme only */
 
 /* Reset and base styles */
 *,
@@ -1377,6 +1358,313 @@ select.field-input {
   color: var(--info);
 }
 
+.notification-icon.clinic-update {
+  background: rgba(168, 85, 247, 0.1);
+  color: #a855f7;
+}
+
+/* Navigation Notification Bell Styles */
+.notification-container {
+  position: relative;
+  margin-right: var(--space-lg);
+}
+
+.notification-btn {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-full);
+  background: var(--surface);
+  color: var(--text-primary);
+  cursor: pointer;
+  transition: all var(--transition);
+}
+
+.notification-btn:hover {
+  background: var(--surface-hover);
+  border-color: var(--primary);
+  color: var(--primary);
+}
+
+.notification-badge {
+  position: absolute;
+  top: -2px;
+  right: -2px;
+  min-width: 20px;
+  height: 20px;
+  background: var(--primary);
+  color: white;
+  border-radius: var(--radius-full);
+  font-size: 0.75rem;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 6px;
+  border: 2px solid var(--surface);
+  opacity: 0;
+  transform: scale(0.8);
+  transition: all var(--transition);
+}
+
+.notification-badge.show {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.notification-dropdown {
+  position: absolute;
+  top: calc(100% + 8px);
+  right: 0;
+  width: 380px;
+  max-height: 500px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-xl);
+  box-shadow: var(--shadow-xl);
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-10px);
+  transition: all var(--transition);
+  z-index: 1000;
+  overflow: hidden;
+}
+
+.notification-dropdown.show {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+.notification-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--space-lg);
+  border-bottom: 1px solid var(--border);
+  background: var(--surface-secondary);
+}
+
+.notification-header h3 {
+  margin: 0;
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.clear-all-btn {
+  background: none;
+  border: none;
+  color: var(--primary);
+  font-size: 0.875rem;
+  font-weight: 500;
+  cursor: pointer;
+  padding: var(--space-xs) var(--space-sm);
+  border-radius: var(--radius-md);
+  transition: all var(--transition);
+}
+
+.clear-all-btn:hover {
+  background: rgba(255, 107, 157, 0.1);
+}
+
+.notification-dropdown .notification-list {
+  max-height: 300px;
+  overflow-y: auto;
+  padding: var(--space-sm);
+}
+
+.notification-dropdown .empty-notifications {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-3xl) var(--space-lg);
+  text-align: center;
+}
+
+.notification-dropdown .empty-notifications .empty-icon {
+  margin-bottom: var(--space-lg);
+  opacity: 0.5;
+}
+
+.notification-dropdown .empty-notifications p {
+  color: var(--text-muted);
+  margin: 0;
+  font-size: 0.9rem;
+}
+
+.notification-footer {
+  padding: var(--space-md) var(--space-lg);
+  border-top: 1px solid var(--border);
+  background: var(--surface-secondary);
+}
+
+.view-all-btn {
+  width: 100%;
+  padding: var(--space-sm);
+  background: var(--primary);
+  color: white;
+  border: none;
+  border-radius: var(--radius-md);
+  font-weight: 500;
+  cursor: pointer;
+  transition: all var(--transition);
+}
+
+.view-all-btn:hover {
+  background: var(--primary-dark);
+}
+
+/* Compact notification items for dropdown */
+.notification-dropdown .notification-item-card {
+  padding: var(--space-md);
+  margin-bottom: var(--space-sm);
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--border);
+  background: var(--surface);
+  cursor: pointer;
+  transition: all var(--transition);
+}
+
+.notification-dropdown .notification-item-card:hover {
+  background: var(--surface-hover);
+  border-color: var(--primary);
+}
+
+.notification-dropdown .notification-item-card:last-child {
+  margin-bottom: 0;
+}
+
+.notification-dropdown .notification-icon {
+  width: 32px;
+  height: 32px;
+  font-size: 1rem;
+}
+
+.notification-dropdown .notification-content {
+  flex: 1;
+  min-width: 0;
+}
+
+.notification-dropdown .notification-title {
+  font-size: 0.875rem;
+  font-weight: 600;
+}
+
+.notification-dropdown .notification-message {
+  font-size: 0.8rem;
+  line-height: 1.4;
+  margin-top: var(--space-xs);
+}
+
+.notification-dropdown .notification-time {
+  font-size: 0.75rem;
+}
+
+/* Separate Notifications Section Styles */
+.notifications-section {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 2000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-lg);
+}
+
+.notifications-page {
+  background: var(--surface);
+  border-radius: var(--radius-2xl);
+  box-shadow: var(--shadow-2xl);
+  width: 100%;
+  max-width: 800px;
+  max-height: 90vh;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.notifications-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--space-xl);
+  border-bottom: 1px solid var(--border);
+  background: var(--surface-secondary);
+}
+
+.notifications-header h1 {
+  margin: 0;
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+.notifications-header p {
+  margin: var(--space-xs) 0 0 0;
+  color: var(--text-muted);
+  font-size: 0.9rem;
+}
+
+.close-notifications-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-full);
+  background: var(--surface);
+  color: var(--text-muted);
+  cursor: pointer;
+  transition: all var(--transition);
+}
+
+.close-notifications-btn:hover {
+  background: var(--surface-hover);
+  color: var(--text-primary);
+  border-color: var(--primary);
+}
+
+.notifications-content {
+  flex: 1;
+  overflow-y: auto;
+  padding: var(--space-xl);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .notification-dropdown {
+    width: 320px;
+    right: -20px;
+  }
+  
+  .notifications-section {
+    padding: var(--space-md);
+  }
+  
+  .notifications-page {
+    max-height: 95vh;
+  }
+  
+  .notifications-header {
+    padding: var(--space-lg);
+  }
+  
+  .notifications-content {
+    padding: var(--space-lg);
+  }
+}
+
 .notification-content {
   flex: 1;
   min-width: 0;
@@ -1775,52 +2063,7 @@ input:checked + .toggle-slider:before {
   }
 }
 
-/* Theme toggle */
-.theme-toggle {
-  position: fixed;
-  top: var(--space-xl);
-  right: var(--space-xl);
-  width: 48px;
-  height: 48px;
-  background: var(--surface-elevated);
-  border: 1px solid var(--border);
-  border-radius: var(--radius-full);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  box-shadow: var(--shadow);
-  transition: all var(--transition);
-  z-index: 1000;
-}
-
-.theme-toggle:hover {
-  background: var(--primary);
-  color: white;
-  border-color: var(--primary);
-  transform: scale(1.1);
-}
-
-.theme-icon {
-  transition: all var(--transition);
-}
-
-.theme-toggle .sun-icon {
-  opacity: 1;
-}
-
-.theme-toggle .moon-icon {
-  opacity: 0;
-  position: absolute;
-}
-
-.theme-toggle.dark-theme .sun-icon {
-  opacity: 0;
-}
-
-.theme-toggle.dark-theme .moon-icon {
-  opacity: 1;
-}
+/* Theme toggle removed - using light theme only */
 
 /* Scroll animations */
 .animate-on-scroll {
@@ -1973,7 +2216,6 @@ input:checked + .toggle-slider:before {
 @media print {
   .chatbox,
   .chatbox-icon,
-  .theme-toggle,
   .cover-change-btn,
   .avatar-change-btn {
     display: none;

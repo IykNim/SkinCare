@@ -1,41 +1,6 @@
 // Utility functions for the SkinCare application - Compiled from TypeScript
 
-export class ThemeManager {
-  constructor() {
-    this.currentTheme = 'light';
-    this.storageKey = 'skincare-theme';
-    this.loadTheme();
-    this.applyTheme();
-  }
-
-  loadTheme() {
-    const saved = localStorage.getItem(this.storageKey);
-    if (saved === 'dark' || saved === 'light') {
-      this.currentTheme = saved;
-    } else {
-      // Auto-detect system preference
-      this.currentTheme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
-    }
-  }
-
-  toggleTheme() {
-    this.currentTheme = this.currentTheme === 'light' ? 'dark' : 'light';
-    this.saveTheme();
-    this.applyTheme();
-  }
-
-  saveTheme() {
-    localStorage.setItem(this.storageKey, this.currentTheme);
-  }
-
-  applyTheme() {
-    document.documentElement.setAttribute('data-theme', this.currentTheme);
-  }
-
-  getCurrentTheme() {
-    return this.currentTheme;
-  }
-}
+// ThemeManager removed - using light theme only
 
 export class AnimationUtils {
   static fadeIn(element, config = { duration: 300, easing: 'ease-out' }) {

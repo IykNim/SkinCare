@@ -1,11 +1,11 @@
 // Main application entry point for SkinCare website - Compiled from TypeScript
 
-import { ThemeManager, ScrollAnimations, DOMUtils } from './utils.js';
+import { ScrollAnimations, DOMUtils } from './utils.js';
 import { DropdownComponent, ChatComponent, TabComponent, ProfileComponent } from './components.js';
 
 class SkinCareApp {
   constructor() {
-    this.themeManager = new ThemeManager();
+    // ThemeManager removed - using light theme only
     this.scrollAnimations = new ScrollAnimations();
     this.profileDropdown = null;
     this.chatComponent = null;
@@ -31,8 +31,9 @@ class SkinCareApp {
       this.initializeProfileComponent();
       this.initializeProfileEditMode();
       this.initializeNotificationSystem();
+      this.initializeNavNotificationSystem();
       this.initializeScrollAnimations();
-      this.initializeThemeToggle();
+      // Theme toggle removed - using light theme only
       this.initializeRippleEffects();
       this.initializeKeyboardNavigation();
     } catch (error) {
@@ -272,6 +273,19 @@ class SkinCareApp {
     this.setupDemoButton();
   }
 
+  initializeNavNotificationSystem() {
+    // Initialize navigation notification bell
+    this.setupNotificationBell();
+    this.updateNotificationBadge();
+    this.renderNavNotifications();
+    
+    // Setup notification dropdown functionality
+    this.setupNotificationDropdown();
+    
+    // Setup clear all functionality
+    this.setupClearAllNotifications();
+  }
+
   loadNotifications() {
     // Load notifications from localStorage
     const stored = localStorage.getItem('skincare-notifications');
@@ -295,6 +309,8 @@ class SkinCareApp {
     this.notifications.unshift(newNotification);
     this.saveNotifications();
     this.renderNotifications();
+    this.renderNavNotifications();
+    this.updateNotificationBadge();
     
     // Show toast notification
     this.showToastNotification(newNotification);
@@ -363,6 +379,7 @@ class SkinCareApp {
       case 'booking': return 'booking';
       case 'reminder': return 'reminder';
       case 'update': return 'update';
+      case 'clinic_update': return 'clinic-update';
       default: return 'booking';
     }
   }
@@ -381,6 +398,11 @@ class SkinCareApp {
       case 'update':
         return `<svg width="20" height="20" viewBox="0 0 24 24" fill="none">
           <path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9" stroke="currentColor" stroke-width="2"/>
+        </svg>`;
+      case 'clinic_update':
+        return `<svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+          <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" stroke="currentColor" stroke-width="2"/>
+          <circle cx="12" cy="10" r="3" stroke="currentColor" stroke-width="2"/>
         </svg>`;
       default:
         return `<svg width="20" height="20" viewBox="0 0 24 24" fill="none">
@@ -426,15 +448,42 @@ class SkinCareApp {
   }
 
   setupBookingNotificationListener() {
-    // Listen for booking events from other pages
-    window.addEventListener('storage', (e) => {
-      if (e.key === 'skincare-new-booking') {
+    // Listen for booking events from other pages and same page
+    const handleStorageEvent = (e) => {
+      if (e.key === 'skincare-new-booking' && e.newValue) {
         const bookingData = JSON.parse(e.newValue);
         this.handleNewBooking(bookingData);
         // Clear the trigger
         localStorage.removeItem('skincare-new-booking');
       }
-    });
+      
+      if (e.key === 'skincare-clinic-update' && e.newValue) {
+        const clinicData = JSON.parse(e.newValue);
+        this.handleClinicUpdate(clinicData);
+        // Clear the trigger
+        localStorage.removeItem('skincare-clinic-update');
+      }
+    };
+
+    // Listen for storage events (cross-tab)
+    window.addEventListener('storage', handleStorageEvent);
+    
+    // Poll for new notifications every 2 seconds (for same-page updates)
+    setInterval(() => {
+      const newBooking = localStorage.getItem('skincare-new-booking');
+      if (newBooking) {
+        const bookingData = JSON.parse(newBooking);
+        this.handleNewBooking(bookingData);
+        localStorage.removeItem('skincare-new-booking');
+      }
+      
+      const clinicUpdate = localStorage.getItem('skincare-clinic-update');
+      if (clinicUpdate) {
+        const clinicData = JSON.parse(clinicUpdate);
+        this.handleClinicUpdate(clinicData);
+        localStorage.removeItem('skincare-clinic-update');
+      }
+    }, 2000);
 
     // Also check for bookings when page loads
     const newBooking = localStorage.getItem('skincare-new-booking');
@@ -442,6 +491,14 @@ class SkinCareApp {
       const bookingData = JSON.parse(newBooking);
       this.handleNewBooking(bookingData);
       localStorage.removeItem('skincare-new-booking');
+    }
+
+    // Also check for clinic updates when page loads
+    const clinicUpdate = localStorage.getItem('skincare-clinic-update');
+    if (clinicUpdate) {
+      const clinicData = JSON.parse(clinicUpdate);
+      this.handleClinicUpdate(clinicData);
+      localStorage.removeItem('skincare-clinic-update');
     }
   }
 
@@ -454,6 +511,21 @@ class SkinCareApp {
         bookingData.service || 'Skincare Consultation',
         bookingData.clinicName,
         `${bookingData.date} ${bookingData.time}`
+      ]
+    };
+    
+    this.addNotification(notification);
+  }
+
+  handleClinicUpdate(clinicData) {
+    const notification = {
+      type: 'clinic_update',
+      title: 'Clinic Information Updated',
+      message: `${clinicData.clinicName} has updated their information. Check out the latest details and services.`,
+      details: [
+        clinicData.clinicName,
+        clinicData.updateType || 'General Update',
+        'View Details'
       ]
     };
     
@@ -527,6 +599,37 @@ class SkinCareApp {
         this.handleNewBooking(randomBooking);
       });
     }
+
+    // Setup demo clinic update button
+    const demoClinicBtn = document.getElementById('demo-clinic-btn');
+    if (demoClinicBtn) {
+      demoClinicBtn.addEventListener('click', () => {
+        // Create sample clinic update data
+        const sampleClinicUpdates = [
+          {
+            clinicName: 'Glow Skin Clinic',
+            updateType: 'New Services Available',
+            description: 'Added advanced laser treatments'
+          },
+          {
+            clinicName: 'Radiance Beauty Center',
+            updateType: 'Schedule Update',
+            description: 'Extended weekend hours'
+          },
+          {
+            clinicName: 'Pure Skin Spa',
+            updateType: 'Special Promotion',
+            description: '20% off all facial treatments'
+          }
+        ];
+        
+        // Pick a random clinic update
+        const randomUpdate = sampleClinicUpdates[Math.floor(Math.random() * sampleClinicUpdates.length)];
+        
+        // Add the notification
+        this.handleClinicUpdate(randomUpdate);
+      });
+    }
   }
 
   // Public method to add booking notification (can be called from other pages)
@@ -541,6 +644,18 @@ class SkinCareApp {
     }));
   }
 
+  // Public method to add clinic update notification (can be called from other pages)
+  static addClinicUpdateNotification(clinicData) {
+    // Store clinic data to trigger notification
+    localStorage.setItem('skincare-clinic-update', JSON.stringify(clinicData));
+    
+    // Dispatch storage event for same-page updates
+    window.dispatchEvent(new StorageEvent('storage', {
+      key: 'skincare-clinic-update',
+      newValue: JSON.stringify(clinicData)
+    }));
+  }
+
   initializeScrollAnimations() {
     // Add scroll animations to various elements
     const animatedElements = document.querySelectorAll('.card, .stat, .field, .btn');
@@ -549,41 +664,7 @@ class SkinCareApp {
     });
   }
 
-  initializeThemeToggle() {
-    // Create theme toggle button
-    const themeToggle = this.createThemeToggle();
-    document.body.appendChild(themeToggle);
-  }
-
-  createThemeToggle() {
-    const toggle = DOMUtils.createElement('button', 'theme-toggle');
-    toggle.innerHTML = `
-      <svg class="theme-icon sun-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <circle cx="12" cy="12" r="5" stroke="currentColor" stroke-width="2"/>
-        <path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42" stroke="currentColor" stroke-width="2"/>
-      </svg>
-      <svg class="theme-icon moon-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" stroke="currentColor" stroke-width="2"/>
-      </svg>
-    `;
-    
-    toggle.setAttribute('aria-label', 'Toggle theme');
-    toggle.addEventListener('click', () => {
-      this.themeManager.toggleTheme();
-      this.updateThemeToggleIcon();
-    });
-
-    this.updateThemeToggleIcon();
-    return toggle;
-  }
-
-  updateThemeToggleIcon() {
-    const toggle = document.querySelector('.theme-toggle');
-    if (toggle) {
-      const isDark = this.themeManager.getCurrentTheme() === 'dark';
-      toggle.classList.toggle('dark-theme', isDark);
-    }
-  }
+  // Theme toggle methods removed - using light theme only
 
   initializeRippleEffects() {
     // Add ripple effects to buttons
@@ -705,9 +786,7 @@ class SkinCareApp {
   }
 
   // Public API methods
-  getThemeManager() {
-    return this.themeManager;
-  }
+  // getThemeManager removed - using light theme only
 
   getChatComponent() {
     return this.chatComponent;
@@ -715,6 +794,160 @@ class SkinCareApp {
 
   getProfileComponent() {
     return this.profileComponent;
+  }
+
+  // Navigation Notification System Methods
+  setupNotificationBell() {
+    const notificationBtn = document.getElementById('notification-btn');
+    const notificationDropdown = document.getElementById('notification-dropdown');
+    
+    if (notificationBtn && notificationDropdown) {
+      notificationBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        this.toggleNotificationDropdown();
+      });
+
+      // Close dropdown when clicking outside
+      document.addEventListener('click', (e) => {
+        if (!notificationBtn.contains(e.target) && !notificationDropdown.contains(e.target)) {
+          this.closeNotificationDropdown();
+        }
+      });
+    }
+  }
+
+  setupNotificationDropdown() {
+    const viewAllBtn = document.querySelector('.view-all-btn');
+    if (viewAllBtn) {
+      viewAllBtn.addEventListener('click', () => {
+        this.openNotificationsSection();
+        this.closeNotificationDropdown();
+      });
+    }
+  }
+
+  setupClearAllNotifications() {
+    const clearAllBtn = document.getElementById('clear-all-btn');
+    if (clearAllBtn) {
+      clearAllBtn.addEventListener('click', () => {
+        this.clearAllNotifications();
+      });
+    }
+  }
+
+  toggleNotificationDropdown() {
+    const dropdown = document.getElementById('notification-dropdown');
+    if (dropdown) {
+      dropdown.classList.toggle('show');
+    }
+  }
+
+  closeNotificationDropdown() {
+    const dropdown = document.getElementById('notification-dropdown');
+    if (dropdown) {
+      dropdown.classList.remove('show');
+    }
+  }
+
+  openNotificationsSection() {
+    const notificationsSection = document.getElementById('notifications-section');
+    if (notificationsSection) {
+      notificationsSection.style.display = 'flex';
+      document.body.style.overflow = 'hidden';
+    }
+  }
+
+  updateNotificationBadge() {
+    const badge = document.getElementById('notification-badge');
+    if (badge) {
+      const unreadCount = this.notifications.filter(n => !n.read).length;
+      badge.textContent = unreadCount > 99 ? '99+' : unreadCount.toString();
+      
+      if (unreadCount > 0) {
+        badge.classList.add('show');
+      } else {
+        badge.classList.remove('show');
+      }
+    }
+  }
+
+  renderNavNotifications() {
+    const navNotificationList = document.getElementById('nav-notification-list');
+    const navEmptyState = document.getElementById('nav-empty-notifications');
+    
+    if (!navNotificationList) return;
+
+    if (this.notifications.length === 0) {
+      // Show empty state
+      navEmptyState.style.display = 'flex';
+      return;
+    }
+
+    // Hide empty state and render notifications (show only recent 5)
+    navEmptyState.style.display = 'none';
+    
+    const recentNotifications = this.notifications.slice(0, 5);
+    const notificationsHTML = recentNotifications.map(notification => 
+      this.createCompactNotificationHTML(notification)
+    ).join('');
+    
+    navNotificationList.innerHTML = notificationsHTML + navEmptyState.outerHTML;
+    
+    // Add click handlers for nav notifications
+    this.addNavNotificationClickHandlers();
+  }
+
+  createCompactNotificationHTML(notification) {
+    const timeAgo = this.getTimeAgo(notification.timestamp);
+    const iconClass = this.getNotificationIconClass(notification.type);
+    const icon = this.getNotificationIcon(notification.type);
+    
+    return `
+      <div class="notification-item-card ${notification.read ? '' : 'unread'}" data-id="${notification.id}">
+        <div class="notification-icon ${iconClass}">
+          ${icon}
+        </div>
+        <div class="notification-content">
+          <div class="notification-header">
+            <span class="notification-title">${notification.title}</span>
+            <span class="notification-time">${timeAgo}</span>
+          </div>
+          <div class="notification-message">${notification.message}</div>
+        </div>
+      </div>
+    `;
+  }
+
+  addNavNotificationClickHandlers() {
+    const navNotificationCards = document.querySelectorAll('#nav-notification-list .notification-item-card');
+    navNotificationCards.forEach(card => {
+      card.addEventListener('click', () => {
+        const id = parseInt(card.dataset.id);
+        this.markNotificationAsRead(id);
+        this.openNotificationsSection();
+        this.closeNotificationDropdown();
+      });
+    });
+  }
+
+  clearAllNotifications() {
+    this.notifications = [];
+    this.saveNotifications();
+    this.renderNotifications();
+    this.renderNavNotifications();
+    this.updateNotificationBadge();
+    this.closeNotificationDropdown();
+  }
+
+  markNotificationAsRead(id) {
+    const notification = this.notifications.find(n => n.id === id);
+    if (notification && !notification.read) {
+      notification.read = true;
+      this.saveNotifications();
+      this.renderNotifications();
+      this.renderNavNotifications();
+      this.updateNotificationBadge();
+    }
   }
 
   // Cleanup method
