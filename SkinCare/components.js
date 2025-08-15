@@ -102,6 +102,12 @@ export class ChatComponent {
     this.chatIcon.addEventListener('click', (e) => {
       AnimationUtils.rippleEffect(this.chatIcon, e);
     });
+
+    // Add outside click functionality to close chat
+    document.addEventListener('click', this.handleOutsideClick.bind(this));
+    
+    // Add escape key functionality to close chat
+    document.addEventListener('keydown', this.handleEscapeKey.bind(this));
   }
 
   handleQuestionClick(event) {
@@ -149,6 +155,27 @@ export class ChatComponent {
   close() {
     this.chatBox.classList.add('hidden');
     this.chatBox.classList.remove('chat-open');
+  }
+
+  handleOutsideClick(event) {
+    const target = event.target;
+    // Check if chat is open and click is outside chat elements
+    if (!this.chatBox.classList.contains('hidden') && 
+        !this.chatBox.contains(target) && 
+        !this.chatIcon.contains(target)) {
+      this.close();
+    }
+  }
+
+  handleEscapeKey(event) {
+    // Close chat when Escape key is pressed and chat is open
+    if (event.key === 'Escape' && !this.chatBox.classList.contains('hidden')) {
+      this.close();
+    }
+  }
+
+  isOpen() {
+    return !this.chatBox.classList.contains('hidden');
   }
 }
 

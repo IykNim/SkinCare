@@ -707,7 +707,12 @@ body {
 
 .cover-change-btn:hover {
   background: white;
-  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.cover-change-btn:active {
+  transform: none;
+  background: rgba(255, 255, 255, 0.95);
 }
 
 .profile-info {
@@ -770,7 +775,11 @@ body {
 
 .avatar-change-btn:hover {
   background: var(--primary-dark);
-  transform: scale(1.1);
+  transform: scale(1.05);
+}
+
+.avatar-change-btn:active {
+  transform: scale(1);
 }
 
 .profile-details {
@@ -2209,6 +2218,459 @@ input:checked + .toggle-slider:before {
   .tab.active {
     border-right-color: var(--primary);
     border-bottom-color: transparent;
+  }
+}
+
+/* Journal Styles */
+.journal-content {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xl);
+}
+
+.journal-section {
+  background: var(--surface);
+  border-radius: var(--radius-lg);
+  padding: var(--space-xl);
+  border: 1px solid var(--border);
+}
+
+.section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: var(--space-lg);
+}
+
+.upload-actions {
+  display: flex;
+  gap: var(--space-md);
+}
+
+.upload-zone {
+  border: 2px dashed var(--border);
+  border-radius: var(--radius-lg);
+  padding: var(--space-2xl);
+  text-align: center;
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.upload-zone:hover,
+.upload-zone.drag-over {
+  border-color: var(--primary);
+  background: rgba(255, 107, 157, 0.05);
+}
+
+.upload-placeholder {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-md);
+  color: var(--text-muted);
+}
+
+.upload-placeholder svg {
+  color: var(--text-muted);
+}
+
+.upload-hint {
+  font-size: 0.875rem;
+  color: var(--text-muted);
+}
+
+.journal-controls {
+  background: var(--surface);
+  border-radius: var(--radius-lg);
+  padding: var(--space-xl);
+  border: 1px solid var(--border);
+}
+
+.control-group {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: var(--space-lg);
+  margin-top: var(--space-lg);
+}
+
+.filter-item {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+}
+
+.filter-label {
+  font-weight: 500;
+  color: var(--text-primary);
+  font-size: 0.875rem;
+}
+
+.view-toggle {
+  display: flex;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  overflow: hidden;
+}
+
+.view-btn {
+  background: var(--surface);
+  border: none;
+  padding: var(--space-sm) var(--space-md);
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.view-btn:hover {
+  background: var(--surface-hover);
+}
+
+.view-btn.active {
+  background: var(--primary);
+  color: white;
+}
+
+.progress-gallery {
+  background: var(--surface);
+  border-radius: var(--radius-lg);
+  padding: var(--space-xl);
+  border: 1px solid var(--border);
+}
+
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: var(--space-lg);
+}
+
+.progress-entry {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  transition: all 0.3s ease;
+  position: relative;
+}
+
+.progress-entry:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+}
+
+.progress-image {
+  position: relative;
+  aspect-ratio: 1;
+  overflow: hidden;
+}
+
+.progress-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.progress-entry:hover .progress-image img {
+  transform: scale(1.05);
+}
+
+.image-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-md);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.progress-entry:hover .image-overlay {
+  opacity: 1;
+}
+
+.overlay-btn {
+  background: rgba(255, 255, 255, 0.9);
+  border: none;
+  border-radius: var(--radius-full);
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.overlay-btn:hover {
+  background: white;
+  transform: scale(1.1);
+}
+
+.overlay-btn.delete-btn:hover {
+  background: var(--error);
+  color: white;
+}
+
+.progress-info {
+  padding: var(--space-lg);
+}
+
+.progress-date {
+  font-size: 0.875rem;
+  color: var(--text-muted);
+  margin-bottom: var(--space-sm);
+}
+
+.progress-notes {
+  color: var(--text-primary);
+  line-height: 1.5;
+  margin-bottom: var(--space-md);
+  min-height: 1.5em;
+}
+
+.progress-notes[contenteditable="true"] {
+  background: var(--surface-hover);
+  border-radius: var(--radius);
+  padding: var(--space-sm);
+  border: 1px solid var(--border);
+  outline: none;
+}
+
+.progress-notes[contenteditable="true"]:focus {
+  border-color: var(--primary);
+}
+
+.progress-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-sm);
+}
+
+.progress-tag {
+  background: var(--primary-light);
+  color: var(--primary-dark);
+  padding: var(--space-xs) var(--space-sm);
+  border-radius: var(--radius-full);
+  font-size: 0.75rem;
+  font-weight: 500;
+}
+
+/* Timeline View */
+.gallery-timeline {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.timeline-container {
+  position: relative;
+  padding-left: var(--space-xl);
+}
+
+.timeline-container::before {
+  content: '';
+  position: absolute;
+  left: 20px;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background: var(--border);
+}
+
+.timeline-item {
+  position: relative;
+  margin-bottom: var(--space-2xl);
+}
+
+.timeline-marker {
+  position: absolute;
+  left: -28px;
+  top: var(--space-md);
+  width: 12px;
+  height: 12px;
+  background: var(--primary);
+  border-radius: var(--radius-full);
+  border: 3px solid var(--surface);
+  box-shadow: 0 0 0 3px var(--border);
+}
+
+.timeline-content {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: var(--space-lg);
+}
+
+.timeline-date {
+  font-size: 0.875rem;
+  color: var(--text-muted);
+  margin-bottom: var(--space-md);
+}
+
+.timeline-entry {
+  display: flex;
+  gap: var(--space-lg);
+  align-items: flex-start;
+}
+
+.timeline-entry img {
+  width: 120px;
+  height: 120px;
+  object-fit: cover;
+  border-radius: var(--radius);
+  flex-shrink: 0;
+}
+
+.timeline-info h4 {
+  margin: 0 0 var(--space-sm) 0;
+  color: var(--text-primary);
+}
+
+.timeline-info p {
+  margin: 0 0 var(--space-md) 0;
+  color: var(--text-secondary);
+  line-height: 1.5;
+}
+
+.timeline-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-sm);
+}
+
+/* Empty State */
+.empty-gallery {
+  text-align: center;
+  padding: var(--space-3xl);
+  color: var(--text-muted);
+}
+
+.empty-gallery .empty-icon {
+  margin-bottom: var(--space-lg);
+}
+
+.empty-gallery h3 {
+  margin: 0 0 var(--space-md) 0;
+  color: var(--text-primary);
+}
+
+.empty-gallery p {
+  margin: 0 0 var(--space-lg) 0;
+  color: var(--text-muted);
+}
+
+/* Progress Statistics */
+.progress-stats {
+  background: var(--surface);
+  border-radius: var(--radius-lg);
+  padding: var(--space-xl);
+  border: 1px solid var(--border);
+}
+
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: var(--space-lg);
+  margin-top: var(--space-lg);
+}
+
+.stat-card {
+  background: var(--gradient-surface);
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-lg);
+  padding: var(--space-lg);
+  display: flex;
+  align-items: center;
+  gap: var(--space-md);
+  transition: all 0.3s ease;
+}
+
+.stat-card:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow);
+}
+
+.stat-icon {
+  width: 48px;
+  height: 48px;
+  background: var(--gradient-primary);
+  border-radius: var(--radius-lg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  flex-shrink: 0;
+}
+
+.stat-info {
+  flex: 1;
+}
+
+.stat-number {
+  display: block;
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  line-height: 1;
+}
+
+.stat-label {
+  display: block;
+  font-size: 0.875rem;
+  color: var(--text-muted);
+  margin-top: var(--space-xs);
+}
+
+/* Responsive Design for Journal */
+@media (max-width: 768px) {
+  .control-group {
+    grid-template-columns: 1fr;
+  }
+  
+  .gallery-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .timeline-entry {
+    flex-direction: column;
+  }
+  
+  .timeline-entry img {
+    width: 100%;
+    height: 200px;
+  }
+  
+  .stats-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  
+  .journal-section,
+  .journal-controls,
+  .progress-gallery,
+  .progress-stats {
+    padding: var(--space-lg);
+  }
+}
+
+@media (max-width: 480px) {
+  .stats-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .upload-zone {
+    padding: var(--space-lg);
+  }
+  
+  .section-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--space-md);
   }
 }
 

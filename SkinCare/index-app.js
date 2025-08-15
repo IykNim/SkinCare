@@ -7,13 +7,6 @@ class IndexPageApp {
   constructor() {
     this.profileDropdown = null;
     this.chatComponent = null;
-    this.chatResponses = {
-      "What's the best skincare routine for oily skin?": "For oily skin, cleanse twice daily with a gentle foaming cleanser, use a BHA exfoliant 2-3 times per week, apply an oil-free moisturizer, and never skip broad-spectrum SPF 30+ sunscreen during the day.",
-      "Do your products contain parabens?": "No, all our products are completely paraben-free! We use natural preservatives and safe alternatives to ensure product safety without compromising your skin's health.",
-      "Are your products cruelty-free?": "Absolutely! We are 100% cruelty-free and never test on animals. We're also certified by Leaping Bunny, the gold standard for cruelty-free cosmetics.",
-      "How long does shipping take?": "Standard shipping takes 3-5 business days within the country, 7-14 days internationally. We also offer express shipping (1-2 days) and same-day delivery in select cities.",
-      "Can I return a product?": "Yes! We offer a 30-day satisfaction guarantee. You can return unopened products within 30 days for a full refund, and opened products within 15 days if you're not completely satisfied."
-    };
 
     this.init();
   }
@@ -98,12 +91,10 @@ class IndexPageApp {
     const chatBox = document.getElementById('chatbox');
     const chatIcon = document.querySelector('.chatbox-icon');
     const closeButton = document.getElementById('close-chat');
-    const responseArea = document.getElementById('chat-response');
-    const questions = document.querySelectorAll('.question');
 
-    if (chatBox && chatIcon && closeButton && responseArea) {
-      // Enhanced chat component with TypeScript
-      this.setupChatEventListeners(chatIcon, chatBox, closeButton, questions, responseArea);
+    if (chatBox && chatIcon && closeButton) {
+      // Use the ChatComponent class for better functionality
+      this.chatComponent = new ChatComponent();
       
       // Add keyboard accessibility
       chatIcon.setAttribute('role', 'button');
@@ -113,113 +104,13 @@ class IndexPageApp {
       chatIcon.addEventListener('keydown', (event) => {
         if (event.key === 'Enter' || event.key === ' ') {
           event.preventDefault();
-          this.openChat(chatBox);
+          this.chatComponent.open();
         }
       });
     }
   }
 
-  setupChatEventListeners(chatIcon, chatBox, closeButton, questions, responseArea) {
-    // Open chat
-    chatIcon.addEventListener('click', (event) => {
-      AnimationUtils.rippleEffect(chatIcon, event);
-      this.openChat(chatBox);
-    });
 
-    // Close chat
-    closeButton.addEventListener('click', () => {
-      this.closeChat(chatBox);
-    });
-
-    // Handle questions
-    questions.forEach((question) => {
-      question.addEventListener('click', () => {
-        this.handleQuestionClick(question, responseArea);
-      });
-      
-      // Keyboard support for questions
-      question.addEventListener('keydown', (event) => {
-        if (event.key === 'Enter' || event.key === ' ') {
-          event.preventDefault();
-          this.handleQuestionClick(question, responseArea);
-        }
-      });
-    });
-
-    // Close chat on escape key
-    document.addEventListener('keydown', (event) => {
-      if (event.key === 'Escape' && !chatBox.classList.contains('hidden')) {
-        this.closeChat(chatBox);
-      }
-    });
-  }
-
-  openChat(chatBox) {
-    chatBox.classList.remove('hidden');
-    chatBox.classList.add('chat-open');
-    
-    // Focus management
-    const firstFocusable = chatBox.querySelector('button');
-    if (firstFocusable) {
-      firstFocusable.focus();
-    }
-    
-    AnimationUtils.slideIn(chatBox, 'up', { duration: 300 });
-  }
-
-  closeChat(chatBox) {
-    chatBox.classList.add('hidden');
-    chatBox.classList.remove('chat-open');
-    
-    // Return focus to chat icon
-    const chatIcon = document.querySelector('.chatbox-icon');
-    if (chatIcon) {
-      chatIcon.focus();
-    }
-  }
-
-  handleQuestionClick(question, responseArea) {
-    const questionText = question.textContent?.trim() || '';
-    const answer = this.chatResponses[questionText] || 
-      "I'm sorry, I don't have an answer for that question right now. Please contact our support team for personalized assistance.";
-    
-    this.displayResponse(questionText, answer, responseArea);
-    
-    // Visual feedback
-    question.classList.add('question-selected');
-    setTimeout(() => question.classList.remove('question-selected'), 300);
-  }
-
-  displayResponse(question, answer, responseArea) {
-    responseArea.innerHTML = `
-      <div class="chat-message user-message">
-        <div class="message-content">${this.escapeHtml(question)}</div>
-      </div>
-      <div class="chat-message bot-message">
-        <div class="message-avatar">🤖</div>
-        <div class="message-content">${this.escapeHtml(answer)}</div>
-      </div>
-    `;
-
-    // Animate the response
-    const messages = responseArea.querySelectorAll('.chat-message');
-    messages.forEach((message, index) => {
-      AnimationUtils.slideIn(message, 'up', { 
-        duration: 300, 
-        delay: index * 150,
-        easing: 'cubic-bezier(0.4, 0, 0.2, 1)' 
-      });
-    });
-
-    // Scroll to response
-    responseArea.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-  }
-
-  escapeHtml(text) {
-    const div = document.createElement('div');
-    div.textContent = text;
-    return div.innerHTML;
-  }
 
   initializeNavigationEffects() {
     // Add hover effects to navigation items

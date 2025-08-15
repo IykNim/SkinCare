@@ -649,40 +649,7 @@
             }
         });
 
-        // Chat functionality
-        const chatIconEl = document.querySelector('.chatbox-icon');
-        const chatBoxEl = document.getElementById('chatbox');
-        const closeChatEl = document.getElementById('close-chat');
-        const chatResponseEl = document.getElementById('chat-response');
-
-        chatIconEl.addEventListener('click', () => {
-            chatBoxEl.classList.remove('hidden');
-        });
-        
-        closeChatEl.addEventListener('click', () => {
-            chatBoxEl.classList.add('hidden');
-        });
-
-        const chatResponses = {
-            "What's the best skincare routine for oily skin?": "Cleanse twice daily, use an oil-free moisturizer, and don't skip sunscreen!",
-            "Do your products contain parabens?": 'Nope! All our products are 100% paraben-free.',
-            'Are your products cruelty-free?': 'Absolutely! We never test on animals.',
-            'How long does shipping take?': 'Shipping usually takes 3–5 business days within the country.',
-            'Can I return a product?': 'Yes! We have a 15-day return policy for unopened products.'
-        };
-
-        document.querySelectorAll('.question').forEach((qBtn) => {
-            qBtn.addEventListener('click', () => {
-                const userQuestion = qBtn.textContent.trim();
-                const answer = chatResponses[userQuestion] || 'Let me get back to you on that!';
-                chatResponseEl.innerHTML = `
-                    <div class="chat-message bot-message">
-                        <div class="message-avatar">🤖</div>
-                        <div class="message-content">${answer}</div>
-                    </div>
-                `;
-            });
-        });
+        // Chat functionality is now handled by chat.js
 
         // Hair Quiz Logic
         const questions = [
@@ -754,6 +721,9 @@
         });
     </script>
 
+    <!-- Chat Module -->
+    <script src="chat.js"></script>
+    
     <!-- TypeScript Modules -->
     <script type="module" src="app.js"></script>
     <script type="module" src="notifications.js"></script>

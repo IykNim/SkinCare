@@ -11,6 +11,7 @@ class SkinCareApp {
     this.chatComponent = null;
     this.tabComponent = null;
     this.profileComponent = null;
+    this.journalInitialized = false;
     this.init();
   }
 
@@ -740,13 +741,33 @@ class SkinCareApp {
   }
 
   handleTabChange(tabId) {
+    // Hide all tab panels
+    const allPanels = document.querySelectorAll('.tab-panel');
+    allPanels.forEach(panel => {
+      panel.classList.remove('active');
+      panel.style.display = 'none';
+    });
+
+    // Show the selected tab panel
+    const activePanel = document.getElementById(tabId);
+    if (activePanel) {
+      activePanel.classList.add('active');
+      activePanel.style.display = 'block';
+    }
+
     // Handle tab-specific logic
     switch (tabId) {
       case 'account-settings':
         this.loadAccountSettings();
         break;
+      case 'journal':
+        this.loadJournalSettings();
+        break;
       case 'security':
         this.loadSecuritySettings();
+        break;
+      case 'preferences':
+        this.loadPreferencesSettings();
         break;
       case 'documents':
         this.loadDocuments();
@@ -765,9 +786,23 @@ class SkinCareApp {
     // Implementation for account settings
   }
 
+  loadJournalSettings() {
+    console.log('Loading journal settings...');
+    // Initialize journal functionality if not already done
+    if (!this.journalInitialized) {
+      this.initializeJournalFunctionality();
+      this.journalInitialized = true;
+    }
+  }
+
   loadSecuritySettings() {
     console.log('Loading security settings...');
     // Implementation for security settings
+  }
+
+  loadPreferencesSettings() {
+    console.log('Loading preferences settings...');
+    // Implementation for preferences settings
   }
 
   loadDocuments() {
@@ -947,6 +982,25 @@ class SkinCareApp {
       this.renderNotifications();
       this.renderNavNotifications();
       this.updateNotificationBadge();
+    }
+  }
+
+  initializeJournalFunctionality() {
+    console.log('Initializing journal functionality...');
+    // This method will be called when the journal tab is first accessed
+    // The journal functionality is already implemented in the HTML script tag
+    // So we just need to ensure it's properly initialized
+    
+    // Trigger any journal-specific initialization if needed
+    const journalPanel = document.getElementById('journal');
+    if (journalPanel) {
+      // The journal functionality is already set up in the HTML script
+      // Just ensure the upload zone is properly initialized
+      const uploadZone = document.getElementById('upload-zone');
+      if (uploadZone && !uploadZone.classList.contains('initialized')) {
+        uploadZone.classList.add('initialized');
+        console.log('Journal upload zone initialized');
+      }
     }
   }
 
